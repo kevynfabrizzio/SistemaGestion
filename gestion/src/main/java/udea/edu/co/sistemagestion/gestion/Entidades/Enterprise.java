@@ -8,12 +8,12 @@ public class Enterprise {
     private String document;
     private String phone;
     private String address;
-    private User user;
-    private Transaction transactions;
+    private User[] user;
+    private Transaction[] transactions;
     private Date createdAt;
     private Date updatedAt;
 
-    public Enterprise(long id, String name, String document, String phone, String address, User user, Transaction transactions, Date createdAt, Date updatedAt) {
+    public Enterprise(long id, String name, String document, String phone, String address, User[] user, Transaction[] transactions, Date createdAt, Date updatedAt) {
         this.id = id;
         this.name = name;
         this.document = document;
@@ -65,19 +65,19 @@ public class Enterprise {
         this.address = address;
     }
 
-    public User getUser() {
+    public User[] getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(User[] user) {
         this.user = user;
     }
 
-    public Transaction getTransactions() {
+    public Transaction[] getTransactions() {
         return transactions;
     }
 
-    public void setTransactions(Transaction transactions) {
+    public void setTransactions(Transaction[] transactions) {
         this.transactions = transactions;
     }
 
