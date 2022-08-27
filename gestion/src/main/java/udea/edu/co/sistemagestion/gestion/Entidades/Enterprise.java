@@ -8,21 +8,19 @@ public class Enterprise {
     private String document;
     private String phone;
     private String address;
-    private user;
-    private transactions;
+    private User user;
+    private Transaction transactions;
     private Date createdAt;
     private Date updatedAt;
 
-    public Enterprise() {
-
-    }
-
-    public Enterprise(long id, String name, String document, String phone, String address, Date createdAt, Date updatedAt) {
+    public Enterprise(long id, String name, String document, String phone, String address, User user, Transaction transactions, Date createdAt, Date updatedAt) {
         this.id = id;
         this.name = name;
         this.document = document;
         this.phone = phone;
         this.address = address;
+        this.user = user;
+        this.transactions = transactions;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
@@ -67,6 +65,22 @@ public class Enterprise {
         this.address = address;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Transaction getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(Transaction transactions) {
+        this.transactions = transactions;
+    }
+
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -82,5 +96,9 @@ public class Enterprise {
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
+
+    
+
+    
 
 }
