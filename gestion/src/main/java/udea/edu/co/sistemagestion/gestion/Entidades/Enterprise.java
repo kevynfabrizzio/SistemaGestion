@@ -1,6 +1,5 @@
-package udea.edu.co.sistemagestion.gestion.Entidades;
+package gestion.src.main.java.udea.edu.co.sistemagestion.gestion.Entidades;
 import java.util.Date;
-
 public class Enterprise {
 
     private long id;
@@ -8,12 +7,12 @@ public class Enterprise {
     private String document;
     private String phone;
     private String address;
-    private User[] user;
+    private Employee[] user;
     private Transaction[] transactions;
     private Date createdAt;
     private Date updatedAt;
 
-    public Enterprise(long id, String name, String document, String phone, String address, User[] user, Transaction[] transactions, Date createdAt, Date updatedAt) {
+    public Enterprise(long id, String name, String document, String phone, String address, Employee[] user, Transaction[] transactions, Date createdAt, Date updatedAt) {
         this.id = id;
         this.name = name;
         this.document = document;
@@ -65,11 +64,11 @@ public class Enterprise {
         this.address = address;
     }
 
-    public User[] getUser() {
+    public Employee[] getUser() {
         return user;
     }
 
-    public void setUser(User[] user) {
+    public void setUser(Employee[] user) {
         this.user = user;
     }
 
@@ -96,11 +95,4 @@ public class Enterprise {
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
-
-    
-
-    
-
-    
-
 }

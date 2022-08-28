@@ -1,20 +1,15 @@
-package udea.edu.co.sistemagestion.gestion.Entidades;
+package gestion.src.main.java.udea.edu.co.sistemagestion.gestion.Entidades;
 
 import java.util.Date;
-
 public class Profile {
-
     private String id;
     private String image;
     private String phone;
-    private User user;
+    private Employee user;
     private Date createdAt;
     private Date updatedAt;
 
-    public Profile() {
-    }
-
-    public Profile(String id, String image, String phone, User user, Date createdAt, Date updatedAt) {
+    public Profile(String id, String image, String phone, Employee user, Date createdAt, Date updatedAt) {
         this.id = id;
         this.image = image;
         this.phone = phone;
@@ -47,11 +42,11 @@ public class Profile {
         this.phone = phone;
     }
 
-    public User getUser() {
+    public Employee getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(Employee user) {
         this.user = user;
     }
 

@@ -1,17 +1,16 @@
-package udea.edu.co.sistemagestion.gestion.Entidades;
+package gestion.src.main.java.udea.edu.co.sistemagestion.gestion.Entidades;
 import java.util.Date;
-
 public class Transaction {
 
     private long id;
     private String concept;
     private float amount;
-    private User user;
+    private Employee user;
     private Enterprise enterprise;
     private Date createdAt;
     private Date updateAt;
 
-    public Transaction(long id, String concept, float amount, User user, Enterprise enterprise, Date createdAt, Date updateAt) {
+    public Transaction(long id, String concept, float amount, Employee user, Enterprise enterprise, Date createdAt, Date updateAt) {
         this.id = id;
         this.concept = concept;
         this.amount = amount;
@@ -45,11 +44,11 @@ public class Transaction {
         this.amount = amount;
     }
 
-    public User getUser() {
+    public Employee getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(Employee user) {
         this.user = user;
     }
 
@@ -76,6 +75,4 @@ public class Transaction {
     public void setUpdateAt(Date updateAt) {
         this.updateAt = updateAt;
     }
-
-
 }
