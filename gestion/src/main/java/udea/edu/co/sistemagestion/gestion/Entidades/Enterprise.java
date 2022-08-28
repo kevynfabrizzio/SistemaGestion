@@ -7,7 +7,7 @@ public class Enterprise {
     private String document;
     private String phone;
     private String address;
-    private Employee[] user;
+    private Employee[] users;
     private Transaction[] transactions;
     private Date createdAt;
     private Date updatedAt;
