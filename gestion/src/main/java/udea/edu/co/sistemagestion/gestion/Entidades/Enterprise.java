@@ -1,4 +1,4 @@
-package gestion.src.main.java.udea.edu.co.sistemagestion.gestion.Entidades;
+package udea.edu.co.sistemagestion.gestion.Entidades;
 import java.util.Date;
 public class Enterprise {
 
@@ -18,7 +18,7 @@ public class Enterprise {
         this.document = document;
         this.phone = phone;
         this.address = address;
-        this.user = user;
+        this.users = user;
         this.transactions = transactions;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
@@ -65,11 +65,11 @@ public class Enterprise {
     }
 
     public Employee[] getUser() {
-        return user;
+        return users;
     }
 
     public void setUser(Employee[] user) {
-        this.user = user;
+        this.users = user;
     }
 
     public Transaction[] getTransactions() {
