@@ -1,4 +1,6 @@
-package gestion.src.main.java.udea.edu.co.sistemagestion.gestion.Entidades;
+package udea.edu.co.sistemagestion.gestion.Entidades;
+
+import org.springframework.context.annotation.Profile;
 
 import java.util.Date;
 public class Employee {

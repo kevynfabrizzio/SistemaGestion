@@ -1,4 +1,4 @@
-package gestion.src.main.java.udea.edu.co.sistemagestion.gestion.Entidades;
+package udea.edu.co.sistemagestion.gestion.Entidades;
 import java.util.Date;
 public class Transaction {
 
