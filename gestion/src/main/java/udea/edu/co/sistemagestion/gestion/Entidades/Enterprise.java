@@ -12,13 +12,13 @@ public class Enterprise {
     private Date createdAt;
     private Date updatedAt;
 
-    public Enterprise(long id, String name, String document, String phone, String address, Employee[] user, Transaction[] transactions, Date createdAt, Date updatedAt) {
+    public Enterprise(long id, String name, String document, String phone, String address, Employee[] users, Transaction[] transactions, Date createdAt, Date updatedAt) {
         this.id = id;
         this.name = name;
         this.document = document;
         this.phone = phone;
         this.address = address;
-        this.users = user;
+        this.users = users;
         this.transactions = transactions;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
@@ -68,8 +68,8 @@ public class Enterprise {
         return users;
     }
 
-    public void setUser(Employee[] user) {
-        this.users = user;
+    public void setUser(Employee[] users) {
+        this.users = users;
     }
 
     public Transaction[] getTransactions() {
