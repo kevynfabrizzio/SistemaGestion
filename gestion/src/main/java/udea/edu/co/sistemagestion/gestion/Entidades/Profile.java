@@ -9,6 +9,9 @@ public class Profile {
     private Date createdAt;
     private Date updatedAt;
 
+    public Profile() {
+    }
+
     public Profile(String id, String image, String phone, Employee user, Date createdAt, Date updatedAt) {
         this.id = id;
         this.image = image;

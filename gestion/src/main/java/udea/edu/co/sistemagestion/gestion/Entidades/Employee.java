@@ -1,6 +1,6 @@
 package udea.edu.co.sistemagestion.gestion.Entidades;
 
-import org.springframework.context.annotation.Profile;
+//import org.springframework.context.annotation.Profile;
 
 import java.util.Date;
 public class Employee {
@@ -14,6 +14,7 @@ public class Employee {
         private Date createdAt;
         private Date updatedAt;
 
+        public Employee(){}
         public Employee(long id, String name, String email, Profile profile, Enum_RoleName role, Enterprise enterprise, Transaction[] transactions, Date createdAt, Date updatedAt) {
                 this.id = id;
                 this.name = name;
