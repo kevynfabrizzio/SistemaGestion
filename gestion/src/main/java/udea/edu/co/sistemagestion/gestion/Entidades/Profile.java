@@ -1,13 +1,17 @@
-package udea.edu.co.sistemagestion.gestion.Entidades;
+package gestion.src.main.java.udea.edu.co.sistemagestion.gestion.Entidades;
 
 import java.util.Date;
+
+
 public class Profile {
+
     private String id;
     private String image;
     private String phone;
     private Employee user;
     private Date createdAt;
     private Date updatedAt;
+
 
     public Profile() {
     }
