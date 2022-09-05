@@ -1,24 +1,20 @@
-package gestion.src.main.java.udea.edu.co.sistemagestion.gestion.Entidades;
+package udea.edu.co.sistemagestion.gestion.Entidades;
+
+//import org.springframework.context.annotation.Profile;
 
 import java.util.Date;
 public class Employee {
-
         private long id;
         private String name;//Es posible leer y modificar el "nombre" de un empleado
-        //@NonNull(massage="Debe ingresar un mail")
         private String email;
         private Profile profile;
-        //@NonNull(message="El Rol de Empelado solo puede ser Admi o Operario")
         private Enum_RoleName role;
         private Enterprise enterprise;
         private Transaction[] transactions;
         private Date createdAt;
         private Date updatedAt;
 
-        public Employee(){
-
-        }
-
+        public Employee(){}
         public Employee(long id, String name, String email, Profile profile, Enum_RoleName role, Enterprise enterprise, Transaction[] transactions, Date createdAt, Date updatedAt) {
                 this.id = id;
                 this.name = name;
