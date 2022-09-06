@@ -1,7 +1,6 @@
 package udea.edu.co.sistemagestion.gestion.Servicios;
 
 import udea.edu.co.sistemagestion.gestion.Entidades.Enterprise;
-
 import java.util.List;
 
 public interface IServicioEnterprise {

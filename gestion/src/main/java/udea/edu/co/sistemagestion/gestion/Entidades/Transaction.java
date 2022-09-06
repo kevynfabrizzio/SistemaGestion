@@ -14,7 +14,7 @@ public class Transaction {
     private String concept;
     @Column(name="amount")
     private float amount;
-    @ManyToOne( fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Employee user;
     @ManyToOne(fetch = FetchType.LAZY)
     private Enterprise enterprise;

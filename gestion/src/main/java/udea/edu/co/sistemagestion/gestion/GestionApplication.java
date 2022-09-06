@@ -1,4 +1,4 @@
-package gestion.src.main.java.udea.edu.co.sistemagestion.gestion;
+package udea.edu.co.sistemagestion.gestion;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

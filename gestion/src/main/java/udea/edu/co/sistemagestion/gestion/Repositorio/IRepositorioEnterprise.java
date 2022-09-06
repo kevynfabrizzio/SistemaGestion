@@ -4,8 +4,7 @@ import org.springframework.stereotype.Repository;
 import udea.edu.co.sistemagestion.gestion.Entidades.Enterprise;
 import org.springframework.data.repository.CrudRepository;
 
-
-
+@Repository
 public interface IRepositorioEnterprise extends CrudRepository<Enterprise, Long>{
 
 }
