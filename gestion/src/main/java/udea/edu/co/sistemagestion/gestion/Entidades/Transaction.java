@@ -1,14 +1,30 @@
 package udea.edu.co.sistemagestion.gestion.Entidades;
 import java.util.Date;
+import javax.persistence.*;
+
+
+@Entity
+@Table(name="Transaction")
 public class Transaction {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    @Column(name="concept")
     private String concept;
+    @Column(name="amount")
     private float amount;
+    @ManyToOne( fetch = FetchType.LAZY)
     private Employee user;
+    @ManyToOne(fetch = FetchType.LAZY)
     private Enterprise enterprise;
+    @Column(name="createdAt")
     private Date createdAt;
+    @Column(name="updateAt")
     private Date updateAt;
+
+    public Transaction() {
+    }
 
     public Transaction(long id, String concept, float amount, Employee user, Enterprise enterprise, Date createdAt, Date updateAt) {
         this.id = id;

@@ -1,4 +1,4 @@
-package gestion.src.main.java.udea.edu.co.sistemagestion.gestion.Controladores;
+package udea.edu.co.sistemagestion.gestion.Controladores;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

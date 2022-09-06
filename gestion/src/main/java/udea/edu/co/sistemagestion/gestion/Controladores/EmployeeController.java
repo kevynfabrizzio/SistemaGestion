@@ -1,4 +1,4 @@
-package gestion.src.main.java.udea.edu.co.sistemagestion.gestion.Controladores;
+package udea.edu.co.sistemagestion.gestion.Controladores;
 
 import org.springframework.web.bind.annotation.*;
 import udea.edu.co.sistemagestion.gestion.Entidades.*;
