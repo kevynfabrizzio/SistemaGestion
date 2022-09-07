@@ -1,18 +1,35 @@
 package udea.edu.co.sistemagestion.gestion.Entidades;
+
 import java.util.Date;
+import javax.persistence.*;
+//import java.sql.Date;
+import java.util.List;
+
+@Entity
+@Table (name="Enterprise")
 public class Enterprise {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    @Column (name="name")
     private String name;
+    @Column (name="document")
     private String document;
+    @Column (name="phone")
     private String phone;
+    @Column (name="address")
     private String address;
-    private Employee[] users;
-    private Transaction[] transactions;
+    @OneToMany(mappedBy="id", fetch = FetchType.LAZY)
+    private List<Employee> users;
+    @OneToMany(mappedBy="id", fetch = FetchType.LAZY)
+    private List<Transaction> transactions;
+    @Column(name = "createdAt")
     private Date createdAt;
+    @Column(name = "updatedAt")
     private Date updatedAt;
 
-    public Enterprise(long id, String name, String document, String phone, String address, Employee[] users, Transaction[] transactions, Date createdAt, Date updatedAt) {
+    public Enterprise(long id, String name, String document, String phone, String address, List<Employee> users, List<Transaction> transactions, Date createdAt, Date updatedAt) {
         this.id = id;
         this.name = name;
         this.document = document;
@@ -22,6 +39,10 @@ public class Enterprise {
         this.transactions = transactions;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+    }
+
+    public Enterprise(){
+
     }
 
     public long getId() {
@@ -64,19 +85,19 @@ public class Enterprise {
         this.address = address;
     }
 
-    public Employee[] getUser() {
+    public List<Employee> getUser() {
         return users;
     }
 
-    public void setUser(Employee[] users) {
+    public void setUser(List<Employee> users) {
         this.users = users;
     }
 
-    public Transaction[] getTransactions() {
+    public List<Transaction> getTransactions() {
         return transactions;
     }
 
-    public void setTransactions(Transaction[] transactions) {
+    public void setTransactions(List<Transaction> transactions) {
         this.transactions = transactions;
     }
 
