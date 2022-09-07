@@ -1,21 +1,35 @@
 package udea.edu.co.sistemagestion.gestion.Entidades;
 
 //import org.springframework.context.annotation.Profile;
-
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
+
+@Entity
+@Table(name = "Employees")
 public class Employee {
+        @Id
+        @GeneratedValue(strategy = GenerationType.AUTO)
         private long id;
-        private String name;//Es posible leer y modificar el "nombre" de un empleado
+        @Column(name = "name",length = 100)
+        private String name;
+        @Column(name = "email",length = 100)
         private String email;
+        @OneToOne(fetch = FetchType.LAZY)
         private Profile profile;
+        @Column(name = "role",length = 30)
         private Enum_RoleName role;
+        @ManyToOne(fetch = FetchType.LAZY)
         private Enterprise enterprise;
-        private Transaction[] transactions;
+        @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
+        private List<Transaction> transactions;
+        @Column(name = "createdAt")
         private Date createdAt;
+        @Column(name = "updatedAt")
         private Date updatedAt;
 
         public Employee(){}
-        public Employee(long id, String name, String email, Profile profile, Enum_RoleName role, Enterprise enterprise, Transaction[] transactions, Date createdAt, Date updatedAt) {
+        public Employee(long id, String name, String email, Profile profile, Enum_RoleName role, Enterprise enterprise, List<Transaction> transactions, Date createdAt, Date updatedAt) {
                 this.id = id;
                 this.name = name;
                 this.email = email;
@@ -75,11 +89,11 @@ public class Employee {
                 this.enterprise = enterprise;
         }
 
-        public Transaction[] getTransactions() {
+        public List<Transaction> getTransactions() {
                 return transactions;
         }
 
-        public void setTransactions(Transaction[] transactions) {
+        public void setTransactions(List<Transaction> transactions) {
                 this.transactions = transactions;
         }
 
