@@ -21,8 +21,4 @@ public interface IServicioEnterprise {
     //delete
     public void delete(long id);
 
-
-
-
-
 }
