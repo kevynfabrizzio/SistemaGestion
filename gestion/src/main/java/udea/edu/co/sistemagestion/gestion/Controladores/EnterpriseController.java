@@ -1,46 +1,49 @@
 package udea.edu.co.sistemagestion.gestion.Controladores;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.*;
-import udea.edu.co.sistemagestion.gestion.Entidades.Employee;
 import udea.edu.co.sistemagestion.gestion.Entidades.Enterprise;
-import udea.edu.co.sistemagestion.gestion.Servicios.ImplServicioEnterprise;
-import udea.edu.co.sistemagestion.gestion.Servicios.IServicioEnterprise;
-
-
+import udea.edu.co.sistemagestion.gestion.Servicios.ServicesEnterprise;
+import java.util.Optional;
 import java.util.List;
 
 
 @RestController
 @RequestMapping("/enterprises")
-public class EnterpriseController {
+public class EnterpriseController{
 
-    @GetMapping()
-    public List<Employee> getAll() {
+    ServicesEnterprise servicesEnterprise;
 
-        return "Esto es una prueba";
+    public EnterpriseController(ServicesEnterprise servicesEnterprise) {
+        this.servicesEnterprise = servicesEnterprise;
     }
 
-    @PostMapping()
-    public ResponseEntity<Employee> create(@RequestBody Employee empleado) {
-        return new ResponseEntity<Employee>(empleado, HttpStatus.OK);
+    //
+    @GetMapping()
+    public List<Enterprise> enterprises() {
+        return servicesEnterprise.enterprises();
+    }
 
+    //
+    @PostMapping()
+    public Enterprise create(@RequestBody Enterprise enterprise){
+        return servicesEnterprise.saveEnterprise(enterprise);
     }
 
     @GetMapping(value = "/enterprise/{id}")
-    public Enterprise  getById(long id) {
-        return ImplServicioEnterprise.getById(long id);
+    public Optional<Enterprise> findBy (@PathVariable long id){
+        return servicesEnterprise.findEnterprise(id);
     }
 
     @PatchMapping(value = "/enterprise/{id}")
-    public Enterprise update(long id, Enterprise enterprise){
-        return ImplServicioEnterprise.update(long id, Enterprise enterprise)
+    public Enterprise update(@RequestBody long id, @RequestBody Enterprise enterprise){
+        return servicesEnterprise.updateEnterprise(id,enterprise);
     }
 
     @DeleteMapping(value = "/enterprise/{id}")
-    public Enterprise delete(long id){
-        ImplServicioEnterprise.delete(long id)
+    public String delete(@RequestBody Enterprise enterprise){
+        servicesEnterprise.deleteEnterprise(enterprise);
+        return "redirect:/enterprise";
     }
 
 }
