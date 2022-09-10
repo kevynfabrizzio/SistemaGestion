@@ -44,6 +44,17 @@ public class ServicesEmployee {
         }
         return empx; //serviciosEmployee.buscarEmployee(id);
     }
+    public Employee findemployeeIdx(int id)// Este metodo pasa parametro primitivo y lo busca en la a la coleecion q se llena con los @PostMapping
+    {
+        Employee empx=null;
+        for (Object emp : employees) {
+            empx=(Employee)emp;
+            if(empx.getId()==id){
+                break;
+            }else{empx=null;}
+        }
+        return empx;
+    }
     public Employee upemployeeId(int id){//El sistema permite editar un usuario con un param
         Employee empx=null;
         for (Object emp : employees) {
@@ -65,6 +76,18 @@ public class ServicesEmployee {
             }else{empx=null;}
         }
         return empx; //serviciosEmployee.buscarEmployee(id);
+    }
+    public ArrayList upemployee(Employee employee){//El sistema permite editar un usuario con 2 parametros
+        //return repositoryEmployee.save(employee);// employee;
+        Employee empx=null;int i=0;
+        for (Object emp:employees) {
+            empx=(Employee)emp;
+            if(empx.getId()==employee.getId()){
+                employees.remove(empx);
+                employees.add(i,employee); break;}
+            i++;
+        }
+        return employees;// employee;
     }
     public ArrayList delemployeeId(@PathVariable int id){//El sistema permite eliminar un usuario
         Employee empx=null;
