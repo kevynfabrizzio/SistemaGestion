@@ -1,15 +1,28 @@
 package udea.edu.co.sistemagestion.gestion.Entidades;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
-
+@Entity
+@Table(name="Profile")
 public class Profile {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
+    @Column(name="image")
     private String image;
+    @Column(name="phone",nullable = false)
     private String phone;
+    //@OneToOne(mappedBy="profile")
+    @OneToOne(mappedBy = "profile")
     private Employee user;
+
+    @Column (name="createdAt")
     private Date createdAt;
+    @Column (name="updatedAt")
     private Date updatedAt;
 
 

@@ -41,7 +41,7 @@ public class EnterpriseController{
     }
 
     @DeleteMapping(value = "/enterprise/{id}")
-    public String delete(@RequestBody Enterprise enterprise){
+    public String delete(@PathVariable Enterprise enterprise){
         servicesEnterprise.deleteEnterprise(enterprise);
         return "redirect:/enterprise";
     }
