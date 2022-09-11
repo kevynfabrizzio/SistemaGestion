@@ -8,7 +8,39 @@ import udea.edu.co.sistemagestion.gestion.Entidades.Transaction;
 
 
 @RestController
-@RequestMapping("/enterprises/{id}/movements")
+@RequestMapping("/enterprises")
+public class TransactionController {
+    //Enterprise e; Employee emp;Profile prof; ArrayList trans;ArrayList employees;
+
+    // 1. El sistema devuelve reponses 200 en la ruta /enterprises/[id]/movements con GET
+    @GetMapping("/movements/{id}")
+    public Transaction findTansaction(@PathVariable int id)// Este metodo pasa parametro primitivo y lo busca en la a la coleecion q se llena con los @PostMapping
+    {
+
+        return new Transaction();
+    }
+
+    // 2. El sistema devuelve reponses 200 en la ruta /enterprises/[id]/movements con POST
+    @PostMapping("/movements/{id}")//update con un parametro;
+    public Transaction saveTran(@PathVariable long id)
+    {
+        return new Transaction();
+    }
+
+    // 3. El sistema devuelve reponses 200 en la ruta /enterprises/[id]/movements con PATCH
+    @PatchMapping("/movements/{id}")//update con un parametro;
+    public Transaction upTransaction(@PathVariable long id)
+    {
+        return new Transaction();
+    }
+
+    // 4. El sistema devuelve reponses 200 en la ruta /enterprises/[id] con GET
+    @DeleteMapping("/movements/{id}")//delete con un parametro;
+    public String deltransaction(@PathVariable int id)
+    {
+        return "Delete Ok";
+    }
+/*@RequestMapping("/enterprises/{id}/movements")
 public class TransactionController {
 
         
@@ -16,21 +48,7 @@ public class TransactionController {
     public ResponseEntity<Transaction> findById(@RequestBody Transaction movimiento) {
         return new ResponseEntity<Transaction>(movimiento, HttpStatus.OK);
     }
-    /*
-    ArrayList transactions;
 
-    @GetMapping
-    public Transaction  getById(long id) {
-        Transaction trnsc=null;
-        for (Object trn : transactions) {
-            trnsc=(Transaction)trn;
-            if(trnsc.getId()==id){
-                break;
-            }else{trnsc=null;}
-        }
-        return trnsc;
-    }*/
-    
     @PostMapping()
     public ResponseEntity<Transaction> create(@RequestBody Transaction movimiento) {
         return new ResponseEntity<Transaction>(movimiento, HttpStatus.OK);
@@ -46,18 +64,5 @@ public class TransactionController {
     public ResponseEntity<Transaction> delete(@RequestBody Transaction movimiento) {
         return new ResponseEntity<Transaction>(movimiento, HttpStatus.OK);
     }
-    /*
-    @DeleteMapping
-    public Transaction delete(long id){
-        Transaction trnsc=null;
-        for (Object trn : transactions) {
-            trnsc=(Transaction)trn;
-            if(trnsc.getId()==id){
-                transactions.remove(trnsc);
-                break;
-            }
-        }
-        return transactions;
-    }*/
-
+ */
 }
