@@ -18,66 +18,29 @@ public class EnterpriseController{
         this.servicesEnterprise = servicesEnterprise;
     }
 
-    // 1. El sistema devuelve reponses 200 en la ruta /enterprises con GET
     @GetMapping
-    public List<Enterprise> enterprises()
-    {
-        //este metodo se accede con localhost:8080/users, y retorna la coleccion
+    public List<Enterprise> enterprises(){
         return servicesEnterprise.enterprises();
     }
 
-    // 2. El sistema devuelve reponses 200 en la ruta /enterproses con POST
     @PostMapping
-    public Enterprise savex() {
-        return servicesEnterprise.saveEnterprise();//savex();// employees;// retorna arraylist
-    }
-
-    // 3. El sistema devuelve reponses 200 en la ruta /enterprises/[id] con GET
-    @GetMapping("/{id}")
-    public Enterprise findenterpriseId(@PathVariable int id)// Este metodo pasa parametro primitivo y lo busca en la a la coleecion q se llena con los @PostMapping
-    {
-        return servicesEnterprise.findEnterprise(id);
-    }
-
-    // 4. El sistema devuelve reponses 200 en la ruta /enterprises/[id] con PATCH
-    @PatchMapping("/{id}")//update con un parametro;
-    public Enterprise upenterpriseid(@PathVariable long id)
-    {
-        return servicesEnterprise.updateEnterprise(id,null);//pemployeeId(id);
-    }
-
-    // 5. El sistema devuelve reponses 200 en la ruta /enterprises/[id] con GET
-    @DeleteMapping("/{id}")//delete con un parametro;
-    public String delenterpriseId(@PathVariable int id)
-    {
-        return servicesEnterprise.deleteEnterprise(id);//elemployeeId(id);
-    }
-  /*  //
-    @GetMapping()
-    public List<Enterprise> enterprises() {
-        return servicesEnterprise.enterprises();
-    }
-
-    //
-    @PostMapping()
-    public Enterprise create(@RequestBody Enterprise enterprise){
+    public Enterprise saveEnterprise(Enterprise enterprise) {
         return servicesEnterprise.saveEnterprise(enterprise);
     }
 
-    @GetMapping(value = "/enterprise/{id}")
-    public Optional<Enterprise> findBy (@PathVariable long id){
-        return servicesEnterprise.findEnterprise(id);
+    @GetMapping("/{id}")
+    public Optional<Enterprise> getById(@PathVariable long id){
+        return servicesEnterprise.getById(id);
     }
 
-    @PatchMapping(value = "/enterprise/{id}")
-    public Enterprise update(@RequestBody long id, @RequestBody Enterprise enterprise){
-        return servicesEnterprise.updateEnterprise(id,enterprise);
+    @PatchMapping("/{id}")
+    public Enterprise updateEnterprise(@PathVariable long id){
+        return servicesEnterprise.updateEnterprise(id,null);
     }
 
-    @DeleteMapping(value = "/enterprise/{id}")
-    public String delete(@PathVariable Enterprise enterprise){
-        servicesEnterprise.deleteEnterprise(enterprise);
-        return "redirect:/enterprise";
-    }*/
+    @DeleteMapping("/{id}")
+    public void delete (Enterprise enterprise){
+        servicesEnterprise.delete(enterprise);
+    }
 
 }
