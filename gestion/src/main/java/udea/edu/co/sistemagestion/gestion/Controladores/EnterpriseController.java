@@ -23,7 +23,7 @@ public class EnterpriseController{
     public String enterprises(Model model){
         List<Enterprise> listaEmpresas = servicesEnterprise.enterprises();
         model.addAttribute("enterprises", listaEmpresas);
-        return "/empresas/listarEmpresas";
+        return "/empresas/listarEmpresas";//Ruta de destino en la vista
     }
 
     @PostMapping

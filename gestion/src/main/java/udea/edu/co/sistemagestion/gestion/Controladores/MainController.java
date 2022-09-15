@@ -25,9 +25,9 @@ public class MainController {
         return "ingresosEgresos/ingresosEgresos";
     }
 
-    @GetMapping(value = "/eterprises/")
+    @GetMapping(value = "/eterprises")//Entidad asociada
     public String emp(){
-        return "empresas/listarEmpresas";
+        return "empresas/listarEmpresas";// Rita de destino en la vista
     }
 
 }
