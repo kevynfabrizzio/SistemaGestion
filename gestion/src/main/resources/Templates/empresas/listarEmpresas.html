@@ -31,7 +31,7 @@
             <!-- filas de la tabla-->
             <tbody>
             <!-- Dibuja la filas por empleados -->
-            <tr th:each="enterprises : ${listaEmpresas}">
+            <tr th:each="enterprises : ${enterprises}">
                 <!-- Dibuja columnas por cada campo del Objeto-->
                 <td th:text="${enterprises.name}"></td>
                 <td th:text="${enterprises.document}"></td>
