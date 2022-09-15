@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="index">
+<body>
+
+<main layout:fragment="contenido">
+
+
+    <div class="table-responsive">
+
+        <table class="table table-bordered">
+            <!-- Columnas de la Tabla -->
+            <thead>
+            <tr>
+                <td > </td >
+                <td > </td >
+                <td  align="left">
+                    <!--  th:href="@{/}"-->
+                    <a class="btn btn-primary" >Nuevo <i class="fa fa-edit"></i></a>
+                </td>
+            </tr>
+
+            <tr>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+            </tr>
+            </thead>
+
+            <!-- filas de la tabla-->
+            <tbody>
+            <!-- Dibuja la filas por empleados -->
+            <tr th:each="enterprises : ${listaEmpresas}">
+                <!-- Dibuja columnas por cada campo del Objeto-->
+                <td th:text="${enterprises.name}"></td>
+                <td th:text="${enterprises.document}"></td>
+                <td th:text="${enterprises.phone}"></td>
+            </tr>
+
+            </tbody>
+
+
+
+        </table>
+
+    </div>
+
+
+</main>
+
+</body>
+
+</html>

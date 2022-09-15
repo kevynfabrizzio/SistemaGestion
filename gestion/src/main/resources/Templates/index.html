@@ -1,47 +1,43 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <title>Document</title>
+    <title>Sistema de Gestion</title>
 </head>
 <body>
 
-<main class="d-flex">
+    <!--Cuerpor de la pagina -->
+
     <div>
-        <nav class="nav flex-column" style="background-color: #eeeeee; position-fixed width: 25%; height: 100vh;">
-            <div class = "list-group list-group-flush border-bottom scrollarea">
-                <img src = "img/logo.png" class = "db-block mx-auto mb-4" height="50" width="145"/>
-                <a class="list-group-item list-group-item-action py-3 lh-tight" style = "display: block; font-weight: 600; color: rgb(41, 41, 41)" href="#">Ingresos y Egresos</a>
-                <a class="list-group-item list-group-item-action py-3 lh-tight" style = "display: block; font-weight: 600; color: rgb(41, 41, 41)" href="#">Usuario</a>
-                <a class="list-group-item list-group-item-action py-3 lh-tight" style = "display: block; font-weight: 600; color: rgb(41, 41, 41)" href="#">Empresas</a>
-            </div>
-        </nav>
+        <!-- Titulo encabezado de la pagina -->
+        <h2 align="center">Sistema de Gestión de Ingresos y Egresos</h2>
     </div>
 
-    <div class="px-4 py-5 text-center">
-        <div class="d-flex gap-4 justify-content-center">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <a href="#">Sistema de gestion de ingresos y gastos</a>
-                </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4" >
+                <!-- Menu lateral -->
+                <nav th:replace="layouts/sidebar:: sidebar"></nav>
             </div>
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <a href="#">Sistema de gestion de usuarios</a>
-                </div>
-            </div>
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <a href="#">Sistema de gestion de empresas</a>
-                </div>
+
+            <div class="col-lg-4" >
+                <!-- la parte principal o contenido del aplicativo o interna-->
+                <main layout:fragment="contenido" role="main" class="container"></main>
             </div>
         </div>
     </div>
-</main>
+
+
+
+    <!-- Pie de PAgina-->
+    <!--<footer th:replace="Layouts/pie :: pie"></footer>-->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>

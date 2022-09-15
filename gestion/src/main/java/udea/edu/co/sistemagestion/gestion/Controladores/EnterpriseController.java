@@ -1,14 +1,15 @@
 package udea.edu.co.sistemagestion.gestion.Controladores;
 
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import udea.edu.co.sistemagestion.gestion.Entidades.Enterprise;
 import udea.edu.co.sistemagestion.gestion.Servicios.ServicesEnterprise;
 import java.util.Optional;
 import java.util.List;
 
-
-@RestController
+@Controller
 @RequestMapping("/enterprises")
 public class EnterpriseController{
 
@@ -18,9 +19,11 @@ public class EnterpriseController{
         this.servicesEnterprise = servicesEnterprise;
     }
 
-    @GetMapping
-    public List<Enterprise> enterprises(){
-        return servicesEnterprise.enterprises();
+    @GetMapping(value = "/list")
+    public String enterprises(Model model){
+        List<Enterprise> listaEmpresas = servicesEnterprise.enterprises();
+        model.addAttribute("enterprises", listaEmpresas);
+        return "/empresas/listarEmpresas";
     }
 
     @PostMapping

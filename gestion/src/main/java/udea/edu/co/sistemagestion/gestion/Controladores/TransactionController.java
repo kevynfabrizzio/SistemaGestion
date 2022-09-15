@@ -3,11 +3,12 @@ package udea.edu.co.sistemagestion.gestion.Controladores;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import udea.edu.co.sistemagestion.gestion.Entidades.Transaction;
 
 
-@RestController
+@Controller
 @RequestMapping("/enterprises")
 public class TransactionController {
     //Enterprise e; Employee emp;Profile prof; ArrayList trans;ArrayList employees;
