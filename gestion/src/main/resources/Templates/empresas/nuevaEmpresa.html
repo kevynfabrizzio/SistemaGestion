@@ -2,51 +2,76 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="index">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <title>Sistema de Gestion</title>
+</head>
+
 <body>
 
 <main layout:fragment="contenido">
-    <!-- Formulario para guardar nuevo usuario -->
-    <form  th:action="@{//}" method="post">
-        <div class="form-group">
-            <h2>Nuevo Usuario</h2>
 
-            <div>
-                <label for="name">Nombre</label>
-                <input autocomplete="off" autofocus  id="name" name="name"
-                       placeholder="Escribe el nombre del usuario" type="text"
-                       class="form-control" >
-            </div>
-            <div>
-                <label for="email">Correo</label>
-                <input autocomplete="off" autofocus  id="email" name="email"
-                       placeholder="Escribe el email" type="text"
-                       class="form-control" >
-            </div>
+    <!-- Formulario para guardar nueva Empresa -->
 
-            <div>
-                <label for="role">Rol</label>
-                <input autocomplete="off" autofocus  id="role" name="role"
-                       placeholder="Escribe el rol" type="text"
-                       class="form-control" >
-            </div>
-            <!-- El campo Telefono-->
-            <div>
-                <label for="phone">Telefono</label>
-                <input autocomplete="off" autofocus  id="phone" name="phone"
-                       placeholder="Escribe el Telefono" type="text"
-                       class="form-control" >
-            </div>
+    <div class="card bg-light">
+        <div class="card-header"></div>
+        <div class="card-body">
 
 
+            <form th:action="@{enterprises/save}" method="post">
+                <div class="form-group">
+                    <h2>Nueva Empresa</h2>
+                    <div>
+                        <label for="name">Nombre</label>
+                        <input autocomplete="off" autofocus id="name" name="name"
+                               placeholder="Escribe el nombre de la Empresa" type="text"
+                               class="form-control">
+                    </div>
+                    <div>
+                        <label for="document">Documento</label>
+                        <input autocomplete="off" autofocus id="documento" name="document"
+                               placeholder="Escriba su número de Documento" type="text"
+                               class="form-control">
+                    </div>
 
+                    <div>
+                        <label for="phone">Telefono</label>
+                        <input autocomplete="off" autofocus id="phone" name="phone"
+                               placeholder="Escribe el Telefono" type="text"
+                               class="form-control">
+                    </div>
+
+                    <div>
+                        <label for="address">Dirección</label>
+                        <input autocomplete="off" autofocus id="email" name="email"
+                               placeholder="Escribe el email" type="text"
+                               class="form-control">
+                    </div>
+
+                    <div>
+                        <label for="date">Fecha</label>
+                        <input autocomplete="off" autofocus id="date" name="date"
+                               type="date" class="form-control">
+                    </div>
+
+
+                </div>
+
+
+                <button class="btn btn-success" th:href="@{enterprise/create}" type="submit">Ingresar</button>
+            </form>
         </div>
-
-
-
-        <button class="btn btn-success" type="submit">Ingresar</button>
-    </form>
-
+    </div>
 </main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

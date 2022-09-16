@@ -26,9 +26,17 @@ public class EnterpriseController{
         return "/empresas/listarEmpresas";//Ruta de destino en la vista
     }
 
-    @PostMapping
-    public Enterprise saveEnterprise(Enterprise enterprise) {
-        return servicesEnterprise.saveEnterprise(enterprise);
+    @GetMapping(value = "/create")
+    public String createEnterprises(Model model){
+        Enterprise enterprise = new Enterprise();
+        model.addAttribute("enterprise", enterprise);
+        return "/empresas/nuevaEmpresa";
+    }
+
+    @PostMapping(value = "/save")
+    public String create(@ModelAttribute("form") Enterprise enterprise) {
+        servicesEnterprise.saveEnterprise(enterprise);
+        return "/empresas/listarEmpresas";
     }
 
     @GetMapping("/{id}")

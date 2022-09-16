@@ -30,4 +30,5 @@ public class MainController {
         return "empresas/listarEmpresas";// Rita de destino en la vista
     }
 
+
 }
