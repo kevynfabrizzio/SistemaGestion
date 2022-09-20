@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import udea.edu.co.sistemagestion.gestion.Entidades.Enterprise;
+import udea.edu.co.sistemagestion.gestion.Servicios.ServicesEmployee;
 import udea.edu.co.sistemagestion.gestion.Servicios.ServicesEnterprise;
 import java.util.Optional;
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
 public class EnterpriseController{
 
     ServicesEnterprise servicesEnterprise;
+    ServicesEmployee servicesEmployee;
 
     public EnterpriseController(ServicesEnterprise servicesEnterprise) {
         this.servicesEnterprise = servicesEnterprise;
@@ -28,15 +30,14 @@ public class EnterpriseController{
 
     @GetMapping(value = "/create")
     public String createEnterprises(Model model){
-        Enterprise enterprise = new Enterprise();
-        model.addAttribute("enterprise", enterprise);
+        model.addAllAttributes();
         return "/empresas/nuevaEmpresa";
     }
 
     @PostMapping(value = "/save")
-    public String create(@ModelAttribute("form") Enterprise enterprise) {
-        servicesEnterprise.saveEnterprise(enterprise);
-        return "/empresas/listarEmpresas";
+    public String create(@RequestParam("name") String name, @RequestParam("document")  String document, @RequestParam("phone")  String phone, @RequestParam("address") String address) {
+        servicesEnterprise.saveEnterprise(name, document, phone, address, this.servicesEmployee);
+        return "redirect:/empresas/listarEmpresas";
     }
 
     @GetMapping("/{id}")

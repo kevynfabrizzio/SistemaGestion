@@ -53,4 +53,8 @@ public class ServicesEnterprise {
     public void delete(Enterprise enterprise) {
         repositoryEnterprise.delete(enterprise);
     }
+
+
+    public void saveEnterprise(String name, String document, String phone, String address, ServicesEmployee servicesEmployee) {
+    }
 }

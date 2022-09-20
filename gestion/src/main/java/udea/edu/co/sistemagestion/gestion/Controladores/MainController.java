@@ -7,7 +7,6 @@ import udea.edu.co.sistemagestion.gestion.Servicios.ServicesEnterprise;
 
 @Controller
 public class MainController {
-
     ServicesEnterprise servicesEnterprise;
 
     public MainController(ServicesEnterprise servicesEnterprise)
@@ -20,15 +19,20 @@ public class MainController {
         return "index";
     }
 
-    @GetMapping(value = "/ingresosEgresos")
+   /* @GetMapping(value = "/ingresosEgresos")
     public String ingEgr(){
         return "ingresosEgresos/ingresosEgresos";
     }
 
-    @GetMapping(value = "/eterprises")//Entidad asociada
-    public String emp(){
-        return "empresas/listarEmpresas";// Rita de destino en la vista
+   @GetMapping(value = "/enterprises")//Entidad asociada
+   public String emp(){
+       return "empresas/listarEmpresas";// Rita de destino en la vista
     }
+
+    @GetMapping(value = "/enterprises/nueva")//Entidad asociada
+    public String nEmp(){
+        return "empresas/nuevaEmpresa";// Rita de destino en la vista
+    }*/
 
 
 }

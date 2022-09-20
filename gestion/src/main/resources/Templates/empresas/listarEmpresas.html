@@ -10,12 +10,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <title>Sistema de Gestion</title>
+    <title>Listar empresas</title>
 </head>
 
 <body>
 <main layout:fragment="contenido">
-
 
     <div class="table-responsive">
 
@@ -24,18 +23,10 @@
             <div class="card-body">
 
                 <table class="table table-bordered">
-                    <!-- Columnas de la Tabla -->
-                    <thead>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td align="left">
-                            <a class="btn btn-primary" th:href="@{enterprise/create}">Nuevo<i class="fa fa-edit"></i></a>
-                        </td>
-                    </tr>
 
+                    <!-- Columnas de la Tabla -->
+                    <a class="btn btn-primary" th:href="@{create}">Nuevo</a>
+                    <thead>
                     <tr>
                         <th>Nombre</th>
                         <th>Documento</th>
