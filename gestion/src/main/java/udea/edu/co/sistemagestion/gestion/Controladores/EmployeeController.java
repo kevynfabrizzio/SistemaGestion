@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import udea.edu.co.sistemagestion.gestion.Entidades.*;
 import udea.edu.co.sistemagestion.gestion.Servicios.ServicesEmployee;
@@ -17,16 +18,26 @@ import java.util.List;
 public class EmployeeController {
     @Autowired
     ServicesEmployee servicesEmployee;
-    public EmployeeController(ServicesEmployee servicesEmployee){
+   /* public EmployeeController(ServicesEmployee servicesEmployee){
         this.servicesEmployee=servicesEmployee;
-    }
+    }*/
 
     // 1. El sistema devuelve reponses 200 en la ruta /users con GET
-    @GetMapping
+   /* @GetMapping
     public List<Employee> employees()
     {
         //este metodo se accede con localhost:8080/users, y retorna la coleccion
         return servicesEmployee.employees();// employees;
+    }*/
+    @GetMapping
+    public String employees(Model model)//List<Employee> employees(Model model)
+    {
+        //este metodo se accede con localhost:8080/users, y retorna la coleccion
+        List<Employee> employees=servicesEmployee.employees();
+        // Estableciendo en el modelo la lista de empleados, para que el HTML La pueda visualizar
+        model.addAttribute("employees",employees);
+        //return servicesEmployee.employees();// employees;
+        return "/usuarios/employees";
     }
 
     // 2. El sistema devuelve reponses 200 en la ruta /users con POST
@@ -51,6 +62,20 @@ public class EmployeeController {
 
         // metodo savex> implemetacion basica: se accede localhost:8080/users
         return servicesEmployee.savex1(employee);// employees;// retorna arraylist
+    }
+    @GetMapping("/nuevo")
+    public String employeenew(){
+        return "usuarios/newEmployee";
+    }
+    @PostMapping("/guardarx")
+    public String guardarx(@RequestParam("name") String name, @RequestParam("email")  String email,@RequestParam("role")  String role, @RequestParam("phone") String phone)
+    {
+        servicesEmployee.guardarx(name,email,role,phone);
+
+        // guardar objeto Employee
+        //servicesEmployee.savex1(employee);
+        //return "redirect:/Employee/listar";
+        return "redirect:/users/";// con esta linea ya retorna lo q guarda
     }
 
     // 3. El sistema devuelve reponses 200 en la ruta /users/[id] con GET

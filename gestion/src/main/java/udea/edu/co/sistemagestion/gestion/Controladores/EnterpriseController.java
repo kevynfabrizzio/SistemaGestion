@@ -30,7 +30,7 @@ public class EnterpriseController{
 
     @GetMapping(value = "/create")
     public String createEnterprises(Model model){
-        model.addAllAttributes();
+      //  model.addAllAttributes();
         return "/empresas/nuevaEmpresa";
     }
 

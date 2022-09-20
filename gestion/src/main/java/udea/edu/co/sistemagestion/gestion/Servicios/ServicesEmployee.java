@@ -5,10 +5,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import udea.edu.co.sistemagestion.gestion.Entidades.Employee;
 import udea.edu.co.sistemagestion.gestion.Entidades.Enterprise;
+import udea.edu.co.sistemagestion.gestion.Entidades.Enum_RoleName;
 import udea.edu.co.sistemagestion.gestion.Entidades.Profile;
 import udea.edu.co.sistemagestion.gestion.Repositorio.RepositoryEmployee;
+import udea.edu.co.sistemagestion.gestion.Repositorio.RepositoryProfile;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -18,6 +21,8 @@ public class ServicesEmployee {
     Enterprise enterp;
     @Autowired
     RepositoryEmployee repositoryEmployee;
+    @Autowired
+    RepositoryProfile repositoryProfile;
     public ServicesEmployee(RepositoryEmployee repositoryEmployee){
         this.repositoryEmployee=repositoryEmployee;
     }
@@ -78,6 +83,42 @@ public class ServicesEmployee {
             }else{empx=null;}
         }
         return empx; //serviciosEmployee.buscarEmployee(id);
+    }
+
+    public void guardarx(String name,String email,String role,String phone){
+        // Crear objeto Profile y guardarlo
+        try {
+            Profile profile = new Profile();
+            //profile.setId(1);
+            profile.setPhone(phone);
+            profile.setCreatedAt(new Date());
+            profile.setUpdatedAt(new Date());
+            // guardo Objeto Profile
+            repositoryProfile.save(profile);
+
+            // crear el Objeto Employee
+            Employee employee = new Employee();
+            //Asocio Profile recien creado con autonumerico ya asignado
+            employee.setProfile(profile);
+            employee.setName(name);
+            employee.setEmail(email);
+            employee.setCreatedAt(new Date());
+            employee.setUpdatedAt(new Date());
+            Enterprise enterprise = new Enterprise();
+            enterprise.setId(1);
+            employee.setEnterprise(enterprise);
+            if (role.equals("Admin")) {
+                employee.setRole(Enum_RoleName.Admin);
+            } else if (role.equals("Operario")) {
+                employee.setRole(Enum_RoleName.Operario);
+            }
+
+            // guardar objeto Employee
+            repositoryEmployee.save(employee);
+        }catch(Exception e){
+            System.out.println("-------******------"+e.getMessage());
+        }
+
     }
 
     public Employee upemployeeId(int id){//El sistema permite editar un usuario con un param
