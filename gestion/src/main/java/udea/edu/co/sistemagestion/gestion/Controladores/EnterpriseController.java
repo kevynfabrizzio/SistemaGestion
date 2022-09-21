@@ -35,17 +35,19 @@ public class EnterpriseController {
         model.addAttribute("enterprises", listaEmpresas);
         return "/empresas/listarEmpresas";//Ruta de destino en la vista
     }
+
     // Crear OK
     @GetMapping(value = "/create")
     public String createEnterprises(Model model) {
         model.addAttribute("enterprise", new Enterprise());
         return "/empresas/nuevaEmpresa";
     }
+
     // Guardar OK
     @PostMapping(value = "/save")
     public String save(@ModelAttribute Enterprise enterprise) {
         servicesEnterprise.saveEnterprise(enterprise);
-        return "/empresas/listarEmpresas";
+        return "redirect:/enterprises/list";
     }
     // Pendiente
     /*@GetMapping("/{id}")
@@ -55,23 +57,24 @@ public class EnterpriseController {
 
     // Pendiente Consulta Empresa
     @GetMapping(value = "/update/{id}")
-    public String updateForm(@PathVariable long id, Enterprise enterprise) {
-        servicesEnterprise.updateEnterprise(id, enterprise);
+    public String updateForm(@PathVariable("id") Long id, Model model) {
+        Optional<Enterprise> enterprise = this.servicesEnterprise.getById(id);
+        model.addAttribute("enterprise", enterprise);
         return "empresas/actualizarEmpresa";
     }
 
     // ***** Pendiente Actualizar Guardar
-    @PostMapping(value = "/update")
+    @PostMapping(value = "/upgrade/{id}")
     public String updateEnterprise(@ModelAttribute Enterprise enterprise) {
         servicesEnterprise.saveEnterprise(enterprise);
-        return "empresas/listarEmpresas";
+        return "redirect:/enterprises/list";
     }
 
     // Eliminar OK
     @PostMapping(value = "/delete")
     public String delete(@ModelAttribute Enterprise enterprise) {
         servicesEnterprise.delete(enterprise.getId());
-        return "empresas/listarEmpresas";
+        return "redirect:/enterprises/list";
     }
 
 }

@@ -20,7 +20,7 @@
         <table class="table table-bordered">
 
             <!-- Columnas de la Tabla -->
-            <a class="btn btn-primary" th:href="@{create}">Nuevo</a>
+            <a class="btn btn-primary" th:href="@{/enterprises/create}">Nuevo</a>
             <thead>
             <tr>
                 <th>Nombre</th>
@@ -41,20 +41,21 @@
                 <td th:text="${enterprises.phone}"></td>
                 <td th:text="${enterprises.address}"></td>
                 <td th:text="${enterprises.createdAt}"></td>
+                <td><!--  <a class="btn btn-primary" th:href="@{update/{id} (id = ${enterprises.id})}">Actualizar</a> -->
 
-                <td>
                     <!-- celda para mostrar boton Actualizar por aparte -->
-                    <form th:object="${enterprises}" th:action="@{update/{id}}" method="post" >
+                    <form th:object="${enterprises}" th:action="@{/enterprises/update/{id}}" method="post" >
                         <input type="hidden" name="id" th:value="${enterprises.id}"/>
                         <button type="submit" class="btn btn-info">Actualizar<i class="fa fa-trash"></i>
                         </button>
                     </form>
+
                 </td>
                 <!-- celda para mostrar boton eliminar por a parte -->
                 <td>
                 <td>
                     <!-- Formulario para eliminar datos-->
-                    <form th:object="${enterprises}" th:action="@{delete}" method="post" >
+                    <form th:object="${enterprises}" th:action="@{/enterprises/delete}" method="post" >
                         <input type="hidden" name="id" th:value="${enterprises.id}"/>
                         <button type="submit" class="btn btn-danger">Eliminar <i class="fa fa-trash"></i>
                         </button>

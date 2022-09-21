@@ -19,22 +19,26 @@
 
     <!-- Formulario para Actulizar una Empresas -->
     <div class="card">
+
         <div class="card-header">
             <h2>Actualizar Empresa</h2>
         </div>
+
         <div class="card-body">
-            <form th:object="${enterprises}" th:action="@{update}" method="post">
+            <form th:object="${enterprises}" th:action="@{/enterprises/upgrade/{id} (id = ${enterprises.id})}" method="post">
                 <div class="form-group">
+
                     <div>
                         <label for="name">Nombre</label>
                         <input type="hidden" name="id" th:value="${enterprises.id}"/>
-                        <input th:value="${enterprises.name}" autocomplete="off" autofocus id="name" name="name"
+                        <input th:field="*{name}" autocomplete="off" autofocus id="name" name="name"
                                placeholder="Escribe el nombre de la Empresa" type="text"
                                class="form-control">
                     </div>
+
                     <div>
                         <label for="document">Documento</label>
-                        <input th:value="${enterprises.document}" autocomplete="off" autofocus id="document"
+                        <input th:field="*{document}" autocomplete="off" autofocus id="document"
                                name="document"
                                placeholder="Escriba su número de Documento" type="text"
                                class="form-control">
@@ -42,26 +46,25 @@
 
                     <div>
                         <label for="phone">Telefono</label>
-                        <input th:value="${enterprises.phone}" autocomplete="off" autofocus id="phone" name="phone"
+                        <input th:field="*{phone}" autocomplete="off" autofocus id="phone" name="phone"
                                placeholder="Escribe el Telefono" type="text"
                                class="form-control">
                     </div>
 
                     <div>
                         <label for="address">Dirección</label>
-                        <input th:value="${enterprises.address}" autocomplete="off" autofocus id="address"
+                        <input th:field="*{address}" autocomplete="off" autofocus id="address"
                                name="address"
                                placeholder="Escribe el email" type="text"
                                class="form-control">
                     </div>
 
                     <div>
-                        <label for="date">Fecha</label>
-                        <input type="datetime-local" th:value="${enterprises.updatedAt}" autocomplete="off" autofocus
+                        <label for="updatedAt">Fecha</label>
+                        <input type="datetime-local" th:field="*{createdAt}" autocomplete="off" autofocus
                                id="updatedAt" name="updatedAt"
                                class="form-control">
                     </div>
-
 
                 </div>
                 <button class="btn btn-success" type="submit">Ingresar</button>
@@ -69,6 +72,7 @@
 
         </div>
     </div>
+
 </main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
