@@ -1,13 +1,11 @@
 package udea.edu.co.sistemagestion.gestion.Controladores;
 
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import udea.edu.co.sistemagestion.gestion.Entidades.Enterprise;
 import udea.edu.co.sistemagestion.gestion.Servicios.ServicesEnterprise;
-
 
 import javax.validation.Valid;
 import java.util.Optional;
@@ -29,6 +27,7 @@ public class EnterpriseController {
             System.out.println("Info Empresa:" + principal.getClass());
         }
     }*/
+
     // Listar OK
     @GetMapping(value = "/list")
     public String enterprises(Model model) {
@@ -54,10 +53,23 @@ public class EnterpriseController {
         return servicesEnterprise.getById(id);
     }
 
+    // Pendiente Consulta Empresa
+    /*@PostMapping(value = "/update/{id}")
+    public String updateForm(@PathVariable("id") long id, Enterprise enterprise) {
+        servicesEnterprise.saveEnterprise(enterprise);
+        return "empresas/actualizarEmpresa";
+    }*/
+    // Pendiente Consulta Empresa
+    @GetMapping(value = "/update/{id}")
+    public String updateForm(@PathVariable("id") long id, Model model) {
+        model.addAttribute("enterprise", servicesEnterprise.findById(id));
+        return "empresas/actualizarEmpresa";
+    }
+
     // ***** Pendiente Actualizar Guardar
-    @PostMapping("/update")
+    @PostMapping("/update/{id}")
     public String updateEnterprise(@ModelAttribute @Valid Enterprise enterprise, BindingResult bindingResult, Model model) {
-       // refrescarModelo(model, principal);
+        // refrescarModelo(model, principal);
         Optional<Enterprise> enterprise1 = servicesEnterprise.getById(enterprise.getId());
         // la busqueda de empleado puede o no traer un resultado;
         if (enterprise1.isPresent()) { // si el objeto es diferente de null
@@ -67,12 +79,7 @@ public class EnterpriseController {
         }// se obtiene la instancia
         return "empresas/listarEmpresas";
     }
-    // Pendiente Consulta Empresa
-    @PostMapping(value = "/update/{id}")
-    public String updateForm(@PathVariable("id") long id, Enterprise enterprise) {
-        servicesEnterprise.saveEnterprise(enterprise);
-        return "empresas/actualizarEmpresa";
-    }
+
     /*
 
 @PostMapping(value = "/editar")
@@ -84,7 +91,6 @@ public class EnterpriseController {
         return "redirect:/productos/mostrar";
     }
 */
-
     // Eliminar OK
     @PostMapping(value = "/delete")
     public String delete(@ModelAttribute Enterprise enterprise) {
