@@ -30,6 +30,7 @@
                 <th>Fecha Incio</th>
             </tr>
             </thead>
+
             <!-- filas de la tabla-->
             <tbody>
             <!-- Dibuja la filas por empleados -->
@@ -48,13 +49,13 @@
                         <button type="submit" class="btn btn-info">Actualizar<i class="fa fa-trash"></i>
                         </button>
                     </form>
-                </td>
-                <!-- Formulario para eliminar datos-->
-                <form th:object="${enterprises}" th:action="@{/enterprises/delete}" method="post">
-                    <input type="hidden" name="id" th:value="${enterprises.id}"/>
-                    <button type="submit" class="btn btn-danger">Eliminar <i class="fa fa-trash"></i>
-                    </button>
-                </form>
+                <td>
+                    <!-- Formulario para eliminar datos-->
+                    <form th:object="${enterprises}" th:action="@{/enterprises/delete}" method="post">
+                        <input type="hidden" name="id" th:value="${enterprises.id}"/>
+                        <button type="submit" class="btn btn-danger">Eliminar <i class="fa fa-trash"></i>
+                        </button>
+                    </form>
                 </td>
             </tr>
             </tbody>
