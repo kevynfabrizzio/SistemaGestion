@@ -23,6 +23,10 @@ public class ServicesEnterprise {
         return repositoryEnterprise.findAll();
     }
 
+    public Optional<Enterprise> findById(long id){
+        return repositoryEnterprise.findById(id);
+    }
+
     //GETBYID
     public Optional<Enterprise> getById(long id) {
         return repositoryEnterprise.findById(id);
@@ -50,11 +54,13 @@ public class ServicesEnterprise {
     }
 
     //DELETE
-    public void delete(Enterprise enterprise) {
-        repositoryEnterprise.delete(enterprise);
+    public void delete(Long id) {
+        repositoryEnterprise.deleteById(id);
+        System.out.println("OK");
     }
 
-
-    public void saveEnterprise(String name, String document, String phone, String address, ServicesEmployee servicesEmployee) {
+    public Optional <Enterprise> buscar (Long id){
+        return repositoryEnterprise.findById(id);
     }
+
 }
