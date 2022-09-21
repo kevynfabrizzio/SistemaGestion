@@ -19,12 +19,8 @@ public class ServicesEnterprise {
     }
 
     //GET
-    public List<Enterprise> enterprises(){
+    public List<Enterprise> enterprises() {
         return repositoryEnterprise.findAll();
-    }
-
-    public Optional<Enterprise> findById(long id){
-        return repositoryEnterprise.findById(id);
     }
 
     //GETBYID
@@ -37,30 +33,10 @@ public class ServicesEnterprise {
         return repositoryEnterprise.save(enterprise);
     }
 
-    //PATCH
-    public Enterprise updateEnterprise(long id, Enterprise enterprise) {
-     Enterprise auxEnterprise = new Enterprise();// repositoryEnterprise.findById(id).orElse(null);
-       auxEnterprise.setId(enterprise.getId());
-        auxEnterprise.setName(enterprise.getName());
-        auxEnterprise.setDocument(enterprise.getDocument());
-        auxEnterprise.setPhone(enterprise.getPhone());
-        auxEnterprise.setAddress(enterprise.getAddress());
-        auxEnterprise.setUser(enterprise.getUser());
-        auxEnterprise.setTransactions(enterprise.getTransactions());
-        auxEnterprise.setCreatedAt(enterprise.getCreatedAt());
-        auxEnterprise.setUpdatedAt(enterprise.getUpdatedAt());
-        repositoryEnterprise.save(auxEnterprise);
-        return new Enterprise();
-    }
-
     //DELETE
     public void delete(Long id) {
         repositoryEnterprise.deleteById(id);
         System.out.println("OK");
-    }
-
-    public Optional <Enterprise> buscar (Long id){
-        return repositoryEnterprise.findById(id);
     }
 
 }

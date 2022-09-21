@@ -23,22 +23,19 @@ public class TransactionController {
 
     // 2. El sistema devuelve reponses 200 en la ruta /enterprises/[id]/movements con POST
     @PostMapping("/movements/{id}")//update con un parametro;
-    public Transaction saveTran(@PathVariable long id)
-    {
+    public Transaction saveTran(@PathVariable long id) {
         return new Transaction();
     }
 
     // 3. El sistema devuelve reponses 200 en la ruta /enterprises/[id]/movements con PATCH
     @PatchMapping("/movements/{id}")//update con un parametro;
-    public Transaction upTransaction(@PathVariable long id)
-    {
+    public Transaction upTransaction(@PathVariable long id) {
         return new Transaction();
     }
 
     // 4. El sistema devuelve reponses 200 en la ruta /enterprises/[id] con GET
     @DeleteMapping("/movements/{id}")//delete con un parametro;
-    public String deltransaction(@PathVariable int id)
-    {
+    public String deltransaction(@PathVariable int id) {
         return "Delete Ok";
     }
 /*@RequestMapping("/enterprises/{id}/movements")

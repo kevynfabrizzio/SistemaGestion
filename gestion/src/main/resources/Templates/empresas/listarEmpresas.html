@@ -30,7 +30,6 @@
                 <th>Fecha Incio</th>
             </tr>
             </thead>
-
             <!-- filas de la tabla-->
             <tbody>
             <!-- Dibuja la filas por empleados -->
@@ -41,25 +40,21 @@
                 <td th:text="${enterprises.phone}"></td>
                 <td th:text="${enterprises.address}"></td>
                 <td th:text="${enterprises.createdAt}"></td>
-                <td><!--  <a class="btn btn-primary" th:href="@{update/{id} (id = ${enterprises.id})}">Actualizar</a> -->
-
+                <td>
                     <!-- celda para mostrar boton Actualizar por aparte -->
-                    <form th:object="${enterprises}" th:action="@{/enterprises/update/{id}(id = ${enterprises.id})}" method="get" >
+                    <form th:object="${enterprises}" th:action="@{/enterprises/update/{id}(id = ${enterprises.id})}"
+                          method="get">
                         <input type="hidden" name="id" th:value="${enterprises.id}"/>
                         <button type="submit" class="btn btn-info">Actualizar<i class="fa fa-trash"></i>
                         </button>
                     </form>
-
                 </td>
-                <!-- celda para mostrar boton eliminar por a parte -->
-                <td>
-                <td>
-                    <!-- Formulario para eliminar datos-->
-                    <form th:object="${enterprises}" th:action="@{/enterprises/delete}" method="post" >
-                        <input type="hidden" name="id" th:value="${enterprises.id}"/>
-                        <button type="submit" class="btn btn-danger">Eliminar <i class="fa fa-trash"></i>
-                        </button>
-                    </form>
+                <!-- Formulario para eliminar datos-->
+                <form th:object="${enterprises}" th:action="@{/enterprises/delete}" method="post">
+                    <input type="hidden" name="id" th:value="${enterprises.id}"/>
+                    <button type="submit" class="btn btn-danger">Eliminar <i class="fa fa-trash"></i>
+                    </button>
+                </form>
                 </td>
             </tr>
             </tbody>

@@ -6,23 +6,23 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="Profile")
+@Table(name = "Profile")
 public class Profile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
-    @Column(name="image")
+    @Column(name = "image")
     private String image;
-    @Column(name="phone",nullable = false)
+    @Column(name = "phone", nullable = false)
     private String phone;
     //@OneToOne(mappedBy="profile")
     @OneToOne(mappedBy = "profile")
     private Employee user;
 
-    @Column (name="createdAt")
+    @Column(name = "createdAt")
     private Date createdAt;
-    @Column (name="updatedAt")
+    @Column(name = "updatedAt")
     private Date updatedAt;
 
 
