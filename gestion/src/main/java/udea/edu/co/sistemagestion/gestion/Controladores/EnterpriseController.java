@@ -55,8 +55,8 @@ public class EnterpriseController {
 
     // Pendiente Consulta Empresa
     @GetMapping(value = "/update/{id}")
-    public String updateForm(@PathVariable("id") long id, Model model) {
-        model.addAttribute("enterprise", servicesEnterprise.findById(id));
+    public String updateForm(@PathVariable long id, Enterprise enterprise) {
+        servicesEnterprise.updateEnterprise(id, enterprise);
         return "empresas/actualizarEmpresa";
     }
 
