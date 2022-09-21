@@ -48,17 +48,11 @@ public class EnterpriseController {
         return "/empresas/listarEmpresas";
     }
     // Pendiente
-    @GetMapping("/{id}")
+    /*@GetMapping("/{id}")
     public Optional<Enterprise> getById(@PathVariable long id) {
         return servicesEnterprise.getById(id);
-    }
-
-    // Pendiente Consulta Empresa
-    /*@PostMapping(value = "/update/{id}")
-    public String updateForm(@PathVariable("id") long id, Enterprise enterprise) {
-        servicesEnterprise.saveEnterprise(enterprise);
-        return "empresas/actualizarEmpresa";
     }*/
+
     // Pendiente Consulta Empresa
     @GetMapping(value = "/update/{id}")
     public String updateForm(@PathVariable("id") long id, Model model) {
@@ -67,30 +61,12 @@ public class EnterpriseController {
     }
 
     // ***** Pendiente Actualizar Guardar
-    @PostMapping("/update/{id}")
-    public String updateEnterprise(@ModelAttribute @Valid Enterprise enterprise, BindingResult bindingResult, Model model) {
-        // refrescarModelo(model, principal);
-        Optional<Enterprise> enterprise1 = servicesEnterprise.getById(enterprise.getId());
-        // la busqueda de empleado puede o no traer un resultado;
-        if (enterprise1.isPresent()) { // si el objeto es diferente de null
-            enterprise = enterprise1.get();//Obtiene una Instancia PErmanente Objeto
-            model.addAttribute("enterprise", enterprise);
-
-        }// se obtiene la instancia
+    @PostMapping(value = "/update")
+    public String updateEnterprise(@ModelAttribute Enterprise enterprise) {
+        servicesEnterprise.saveEnterprise(enterprise);
         return "empresas/listarEmpresas";
     }
 
-    /*
-
-@PostMapping(value = "/editar")
-    public String actualizarProducto(@ModelAttribute Producto producto, RedirectAttributes redirectAttrs) {
-        productosRepository.save(producto);
-        redirectAttrs
-                .addFlashAttribute("mensaje", "Editado correctamente")
-                .addFlashAttribute("clase", "success");
-        return "redirect:/productos/mostrar";
-    }
-*/
     // Eliminar OK
     @PostMapping(value = "/delete")
     public String delete(@ModelAttribute Enterprise enterprise) {

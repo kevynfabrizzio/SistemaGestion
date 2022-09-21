@@ -44,7 +44,7 @@
 
                 <td>
                     <!-- celda para mostrar boton Actualizar por aparte -->
-                    <form th:action="@{update/{id}}" method="post" th:object="${enterprises}">
+                    <form th:object="${enterprises}" th:action="@{update/{id}}" method="post" >
                         <input type="hidden" name="id" th:value="${enterprises.id}"/>
                         <button type="submit" class="btn btn-info">Actualizar<i class="fa fa-trash"></i>
                         </button>

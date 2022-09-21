@@ -23,7 +23,7 @@
             <h2>Actualizar Empresa</h2>
         </div>
         <div class="card-body">
-            <form th:object="${enterprises}" th:action="@{update/{id}}" method="get">
+            <form th:object="${enterprises}" th:action="@{update}" method="post">
                 <div class="form-group">
                     <div>
                         <label for="name">Nombre</label>
