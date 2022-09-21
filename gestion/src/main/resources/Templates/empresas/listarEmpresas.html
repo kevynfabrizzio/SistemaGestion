@@ -44,7 +44,7 @@
                 <td><!--  <a class="btn btn-primary" th:href="@{update/{id} (id = ${enterprises.id})}">Actualizar</a> -->
 
                     <!-- celda para mostrar boton Actualizar por aparte -->
-                    <form th:object="${enterprises}" th:action="@{/enterprises/update/{id}}" method="post" >
+                    <form th:object="${enterprises}" th:action="@{/enterprises/update/{id}(id = ${enterprises.id})}" method="get" >
                         <input type="hidden" name="id" th:value="${enterprises.id}"/>
                         <button type="submit" class="btn btn-info">Actualizar<i class="fa fa-trash"></i>
                         </button>

@@ -59,7 +59,7 @@ public class EnterpriseController {
     @GetMapping(value = "/update/{id}")
     public String updateForm(@PathVariable("id") Long id, Model model) {
         Optional<Enterprise> enterprise = this.servicesEnterprise.getById(id);
-        model.addAttribute("enterprise", enterprise);
+        model.addAttribute("enterprise", enterprise.get());
         return "empresas/actualizarEmpresa";
     }
 

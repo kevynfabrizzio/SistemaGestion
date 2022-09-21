@@ -25,12 +25,12 @@
         </div>
 
         <div class="card-body">
-            <form th:object="${enterprises}" th:action="@{/enterprises/upgrade/{id} (id = ${enterprises.id})}" method="post">
+            <form th:object="${enterprise}" th:action="@{/enterprises/upgrade/{id} (id = ${enterprise.id})}" method="post">
                 <div class="form-group">
 
                     <div>
                         <label for="name">Nombre</label>
-                        <input type="hidden" name="id" th:value="${enterprises.id}"/>
+                        <input type="hidden" name="id" th:value="${enterprise.id}"/>
                         <input th:field="*{name}" autocomplete="off" autofocus id="name" name="name"
                                placeholder="Escribe el nombre de la Empresa" type="text"
                                class="form-control">
