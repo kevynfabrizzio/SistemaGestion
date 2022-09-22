@@ -5,8 +5,57 @@
 <body>
 
 <main layout:fragment="contenido">
-    <div class="col-12">
-        <h2>Aqui se va ver el formulario de ingresos y Egresos</h2>
+    <div>
+        <table class="table table-bordered">
+
+            <!-- Columnas de la Tabla -->
+            <a class="btn btn-primary" th:href="@{}">Nuevo</a>
+            <thead>
+            <tr>
+                <th>Concept</th>
+                <th>Amount</th>
+                <th>User</th>
+                <th>Enterprise</th>
+            </tr>
+            </thead>
+
+            <!-- filas de la tabla-->
+            <tbody>
+            <!-- Dibuja la filas por empleados -->
+            <tr th:each="transaction : ${transaction}">
+                <!-- Dibuja columnas por cada campo del Objeto-->
+                <td th:text="${transaction.concept}"></td>
+                <td th:text="${transaction.amount}"></td>
+                <td th:text="${transaction.user}"></td>
+                <td th:text="${transaction.enterprise}"></td>
+
+
+
+                <td>
+                    <!-- celda para mostrar boton Actualizar por aparte -->
+                    <form th:action="@{}" method="post" th:object="${transaction}">
+                        <input type="hidden" name="id" th:value="${transaction.id}"/>
+                        <button type="submit" class="btn btn-info">Actualizar<i class="fa fa-trash"></i>
+                        </button>
+                    </form>
+                </td>
+                <!-- celda para mostrar boton eliminar por aparte -->
+                <td>
+                <td>
+                    <!-- Formulario para eliminar datos-->
+                    <form th:object="${transaction}" th:action="@{delete}" method="post" >
+                        <input type="hidden" name="id" th:value="${transaction.id}"/>
+                        <button type="submit" class="btn btn-danger">Eliminar <i class="fa fa-trash"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+
+            <tr>
+                <td th:text="${}">suma</td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </main>
 

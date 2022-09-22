@@ -17,7 +17,7 @@
 <main layout:fragment="contenido">
 
     <div>
-        <table class="table table-bordered">
+        <table class="table table-bordered" style="border:3px solid black; border-radius:2px;">
 
             <!-- Columnas de la Tabla -->
             <a class="btn btn-primary" th:href="@{create}">Nuevo</a>
@@ -46,7 +46,7 @@
                     <!-- celda para mostrar boton Actualizar por aparte -->
                     <form th:action="@{update/{id}}" method="post" th:object="${enterprises}">
                         <input type="hidden" name="id" th:value="${enterprises.id}"/>
-                        <button type="submit" class="btn btn-info">Actualizar<i class="fa fa-trash"></i>
+                        <button type="submit" class="btn btn-warning">Actualizar<i class="fa fa-trash"></i>
                         </button>
                     </form>
                 </td>
