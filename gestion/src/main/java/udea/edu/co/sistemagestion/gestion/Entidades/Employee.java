@@ -1,6 +1,7 @@
 package udea.edu.co.sistemagestion.gestion.Entidades;
 
-//import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.Primary;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -15,14 +16,19 @@ public class Employee {
         private String name;
         @Column(name = "email",length = 100)
         private String email;
-        @OneToOne(fetch = FetchType.LAZY)
+        @OneToOne
+        @JoinColumn
         private Profile profile;
+
         @Column(name = "role",length = 30)
+        @Enumerated(value = EnumType.STRING)
         private Enum_RoleName role;
         @ManyToOne(fetch = FetchType.LAZY)
+        @JoinColumn
         private Enterprise enterprise;
-        @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
-        private List<Transaction> transactions;
+        //   @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
+        //   private List<Transaction> transactions;
+
         @Column(name = "createdAt")
         private Date createdAt;
         @Column(name = "updatedAt")
@@ -36,7 +42,7 @@ public class Employee {
                 this.profile = profile;
                 this.role = role;
                 this.enterprise = enterprise;
-                this.transactions = transactions;
+                //   this.transactions = transactions;
                 this.createdAt = createdAt;
                 this.updatedAt = updatedAt;
         }
@@ -89,14 +95,14 @@ public class Employee {
                 this.enterprise = enterprise;
         }
 
-        public List<Transaction> getTransactions() {
-                return transactions;
-        }
+        /*  public List<Transaction> getTransactions() {
+                  return transactions;
+          }
 
-        public void setTransactions(List<Transaction> transactions) {
-                this.transactions = transactions;
-        }
-
+          public void setTransactions(List<Transaction> transactions) {
+                  this.transactions = transactions;
+          }
+  */
         public Date getCreatedAt() {
                 return createdAt;
         }

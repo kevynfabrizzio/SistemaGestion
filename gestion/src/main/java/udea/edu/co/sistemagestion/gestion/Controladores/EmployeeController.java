@@ -33,9 +33,9 @@ public class EmployeeController {
     public String employees(Model model)//List<Employee> employees(Model model)
     {
         //este metodo se accede con localhost:8080/users, y retorna la coleccion
-        List<Employee> employees=servicesEmployee.employees();
+        List<Employee> employees = servicesEmployee.employees();
         // Estableciendo en el modelo la lista de empleados, para que el HTML La pueda visualizar
-        model.addAttribute("employees",employees);
+        model.addAttribute("employees", employees);
         //return servicesEmployee.employees();// employees;
         return "/usuarios/employees";
     }
@@ -46,31 +46,34 @@ public class EmployeeController {
     //la segunda lo mismo pero el url es: localhost../users/1/pedro
     //y la tercera pasa un JSON asi: localhost.../users/save; y por postman le pasas el json Emplloyee
     @PostMapping
-    public ArrayList savex2(@RequestParam("idProf") String idProf,@RequestParam("name") String name) {
+    public ArrayList savex2(@RequestParam("idProf") String idProf, @RequestParam("name") String name) {
 
         // metodo savex> implemetacion basica: se accede localhost:8080/users
-        return servicesEmployee.savex2(idProf,name);// employees;// retorna arraylist
+        return servicesEmployee.savex2(idProf, name);// employees;// retorna arraylist
     }
+
     @PostMapping("/{idprof}/{name}")
-    public ArrayList savex4(@PathVariable String idprof,@PathVariable String name) {
+    public ArrayList savex4(@PathVariable String idprof, @PathVariable String name) {
 
         // metodo savex> implemetacion basica: se accede localhost:8080/users
-        return servicesEmployee.savex2(idprof,name);// employees;// retorna arraylist
+        return servicesEmployee.savex2(idprof, name);// employees;// retorna arraylist
     }
+
     @PostMapping("/save")
     public ArrayList savex5(@RequestBody Employee employee) {
 
         // metodo savex> implemetacion basica: se accede localhost:8080/users
         return servicesEmployee.savex1(employee);// employees;// retorna arraylist
     }
+
     @GetMapping("/nuevo")
-    public String employeenew(){
+    public String employeenew() {
         return "usuarios/newEmployee";
     }
+
     @PostMapping("/guardarx")
-    public String guardarx(@RequestParam("name") String name, @RequestParam("email")  String email,@RequestParam("role")  String role, @RequestParam("phone") String phone)
-    {
-        servicesEmployee.guardarx(name,email,role,phone);
+    public String guardarx(@RequestParam("name") String name, @RequestParam("email") String email, @RequestParam("role") String role, @RequestParam("phone") String phone) {
+        servicesEmployee.guardarx(name, email, role, phone);
 
         // guardar objeto Employee
         //servicesEmployee.savex1(employee);
@@ -87,30 +90,27 @@ public class EmployeeController {
 
     // 4. El sistema devuelve reponses 200 en la ruta /users/[id] con PATCH
     @PatchMapping("/{id}")//update con un parametro;
-    public Employee upemployeeId(@PathVariable int id)
-    {
+    public Employee upemployeeId(@PathVariable int id) {
         return servicesEmployee.upemployeeId(id);
     }
 
     // 5. El sistema devuelve reponses 200 en la ruta /users/[id] con GET
     @DeleteMapping("/{id}")//delete con un parametro;
-    public ArrayList delemployeeId(@PathVariable int id)
-    {
+    public ArrayList delemployeeId(@PathVariable int id) {
         return servicesEmployee.delemployeeId(id);
     }
 
     //Otras formas con get post patch delete
     @PostMapping("/byname_prof")
-    public ArrayList savex1x(@RequestParam("name") String name,@RequestParam("idprofile") String id) {//metodo savex1> implemetacion basica: se accede localhost:8080/users
-        return servicesEmployee.savex1x(name,id);// employees;// retorna arraylist
+    public ArrayList savex1x(@RequestParam("name") String name, @RequestParam("idprofile") String id) {//metodo savex1> implemetacion basica: se accede localhost:8080/users
+        return servicesEmployee.savex1x(name, id);// employees;// retorna arraylist
     }
 
-    @PostMapping(value="/guardar")
+    @PostMapping(value = "/guardar")
     public ArrayList savex3(@RequestBody Employee employee)//guardar> implementacion pasando objeto;se accede localhost:8080/users/guardar y por postman le pasas el json
     {
         return servicesEmployee.savex1(employee);
     }
-
 
     @GetMapping("/userx")//@GetMapping(value="/user/{id}") //para busquedas por un solo parametro; le quite el value
     public Employee findemployeeIdx(@RequestParam int id)// Este metodo pasa parametro primitivo y lo busca en la a la coleecion q se llena con los @PostMapping
@@ -120,14 +120,13 @@ public class EmployeeController {
 
 
     @PatchMapping("/user/{id}/{name}")//update con 2(multiples parametros)
-    public Employee upemployeeIdName(@PathVariable int id, @PathVariable String name)
-    {
-        return  servicesEmployee.upemployeeIdName(id,name);
+    public Employee upemployeeIdName(@PathVariable int id, @PathVariable String name) {
+        return servicesEmployee.upemployeeIdName(id, name);
     }
+
     @PatchMapping("/user/update")//update pasando object
-    public ArrayList upemployee(@RequestBody Employee employee)
-    {
-        return  servicesEmployee.upemployee(employee);
+    public ArrayList upemployee(@RequestBody Employee employee) {
+        return servicesEmployee.upemployee(employee);
     }
 /*
     @Autowired
