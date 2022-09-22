@@ -8,6 +8,7 @@
 		<version>2.7.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+
 	<groupId>udea.edu.co.sistemagestion</groupId>
 	<artifactId>gestion</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -17,6 +18,7 @@
 
 		<java.version>17</java.version>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -43,7 +45,6 @@
 			<version>3.1.0</version>
 		</dependency>
 
-
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
@@ -66,8 +67,14 @@
             <version>2.2</version>
         </dependency>
 
+		<!--<dependency>
+            <groupId>udea.edu.co.caja</groupId>
+            <artifactId>caja</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>-->
 
-	<!-- https://mvnrepository.com/artifact/org.jetbrains/annotations -->
+
+        <!-- https://mvnrepository.com/artifact/org.jetbrains/annotations -->
 	<!-- <dependency>
 		<groupId>org.jetbrains</groupId>
 		<artifactId>annotations</artifactId>
@@ -86,7 +93,6 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-oauth2-client</artifactId>
 	</dependency> -->
-
 	</dependencies>
 
 	<build>

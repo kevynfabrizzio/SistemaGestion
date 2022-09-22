@@ -21,41 +21,29 @@ public class EnterpriseController {
         this.servicesEnterprise = servicesEnterprise;
     }
 
-   /* public void refrescarModelo(Model model, @AuthenticationPrincipal OidcUser principal) {
-        if (principal != null) {
-            model.addAttribute("enterprise", principal.getClaims());
-            System.out.println("Info Empresa:" + principal.getClass());
-        }
-    }*/
-
-    // Listar OK
+    // Listar Empresas
     @GetMapping(value = "/list")
     public String enterprises(Model model) {
         List<Enterprise> listaEmpresas = servicesEnterprise.enterprises();
         model.addAttribute("enterprises", listaEmpresas);
-        return "/empresas/listarEmpresas";//Ruta de destino en la vista
+        return "/empresas/listarEmpresas";
     }
 
-    // Crear OK
+    // Crear Empresa
     @GetMapping(value = "/create")
     public String createEnterprises(Model model) {
         model.addAttribute("enterprise", new Enterprise());
         return "/empresas/nuevaEmpresa";
     }
 
-    // Guardar OK
+    // Guardar Empresa
     @PostMapping(value = "/save")
     public String save(@ModelAttribute Enterprise enterprise) {
         servicesEnterprise.saveEnterprise(enterprise);
         return "redirect:/enterprises/list";
     }
-    // Pendiente
-    /*@GetMapping("/{id}")
-    public Optional<Enterprise> getById(@PathVariable long id) {
-        return servicesEnterprise.getById(id);
-    }*/
 
-    // Pendiente Consulta Empresa
+    // Consultar Empresa por ID
     @GetMapping(value = "/update/{id}")
     public String updateForm(@PathVariable("id") Long id, Model model) {
         Optional<Enterprise> enterprise = this.servicesEnterprise.getById(id);
@@ -63,14 +51,14 @@ public class EnterpriseController {
         return "empresas/actualizarEmpresa";
     }
 
-    // ***** Pendiente Actualizar Guardar
+    // Actualizar Datos Empresa
     @PostMapping(value = "/upgrade/{id}")
     public String updateEnterprise(@ModelAttribute Enterprise enterprise) {
         servicesEnterprise.saveEnterprise(enterprise);
         return "redirect:/enterprises/list";
     }
 
-    // Eliminar OK
+    // Eliminar Empresa
     @PostMapping(value = "/delete")
     public String delete(@ModelAttribute Enterprise enterprise) {
         servicesEnterprise.delete(enterprise.getId());

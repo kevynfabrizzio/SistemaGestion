@@ -112,7 +112,6 @@ public class EmployeeController {
         return servicesEmployee.savex1(employee);
     }
 
-
     @GetMapping("/userx")//@GetMapping(value="/user/{id}") //para busquedas por un solo parametro; le quite el value
     public Employee findemployeeIdx(@RequestParam int id)// Este metodo pasa parametro primitivo y lo busca en la a la coleecion q se llena con los @PostMapping
     {

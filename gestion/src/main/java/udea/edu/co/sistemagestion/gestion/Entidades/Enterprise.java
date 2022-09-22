@@ -1,4 +1,5 @@
 package udea.edu.co.sistemagestion.gestion.Entidades;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -6,23 +7,23 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table (name="Enterprise")
+@Table(name = "Enterprise")
 public class Enterprise {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @Column (name="name")
+    @Column(name = "name")
     private String name;
-    @Column (name="document")
+    @Column(name = "document")
     private String document;
-    @Column (name="phone")
+    @Column(name = "phone")
     private String phone;
-    @Column (name="address")
+    @Column(name = "address")
     private String address;
-    @OneToMany(mappedBy="id", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
     private List<Employee> users;
-    @OneToMany(mappedBy="id", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
     private List<Transaction> transactions;
     @Column(name = "createdAt")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
@@ -43,7 +44,7 @@ public class Enterprise {
         this.updatedAt = updatedAt;
     }
 
-    public Enterprise(){
+    public Enterprise() {
 
     }
 
