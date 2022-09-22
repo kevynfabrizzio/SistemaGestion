@@ -24,9 +24,6 @@ public class TransactionController {
     }
 
 
-
-
-
     // 1. El sistema devuelve reponses 200 en la ruta /enterprises/[id]/movements con GET
     @GetMapping("/movements")
     public String movements(Model model) {
@@ -43,8 +40,7 @@ public class TransactionController {
 
     // 2. El sistema devuelve reponses 200 en la ruta /enterprises/[id]/movements con POST
     @PostMapping("/movements/{id}")//update con un parametro;
-    public Transaction saveTran(@PathVariable long id)
-    {
+    public Transaction saveTran(@PathVariable long id) {
         return new Transaction();
     }
 
