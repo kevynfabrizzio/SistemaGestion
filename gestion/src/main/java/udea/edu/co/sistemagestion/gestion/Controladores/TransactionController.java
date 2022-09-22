@@ -14,7 +14,7 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping("/enterprises/")
+@RequestMapping("/enterprisesT")
 public class TransactionController {
     //Enterprise e; Employee emp;Profile prof; ArrayList trans;ArrayList employees;
     ServicesTransaction1 servicesTransaction;
@@ -28,7 +28,7 @@ public class TransactionController {
 
 
     // 1. El sistema devuelve reponses 200 en la ruta /enterprises/[id]/movements con GET
-    @GetMapping("{id}/movements")
+    @GetMapping("/movements")
     public String movements(Model model) {
         List<Transaction> listaMovimientos = servicesTransaction.transaction();
         model.addAttribute("transaction", listaMovimientos);

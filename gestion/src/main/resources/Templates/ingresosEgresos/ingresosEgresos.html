@@ -9,7 +9,7 @@
         <table class="table table-bordered">
 
             <!-- Columnas de la Tabla -->
-            <a class="btn btn-primary" th:href="@{}">Nuevo</a>
+            <a class="btn btn-primary" >Nuevo</a>
             <thead>
             <tr>
                 <th>Concept</th>
@@ -33,7 +33,7 @@
 
                 <td>
                     <!-- celda para mostrar boton Actualizar por aparte -->
-                    <form th:action="@{}" method="post" th:object="${transaction}">
+                    <form  method="post" th:object="${transaction}">
                         <input type="hidden" name="id" th:value="${transaction.id}"/>
                         <button type="submit" class="btn btn-info">Actualizar<i class="fa fa-trash"></i>
                         </button>
@@ -52,7 +52,7 @@
             </tr>
 
             <tr>
-                <td th:text="${}">suma</td>
+                <td >suma</td>
             </tr>
             </tbody>
         </table>
