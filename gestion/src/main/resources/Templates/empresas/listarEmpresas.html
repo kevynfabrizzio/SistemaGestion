@@ -17,10 +17,10 @@
 <main layout:fragment="contenido">
 
     <div>
-        <table class="table table-bordered">
+        <table class="table">
 
             <!-- Columnas de la Tabla -->
-            <a class="btn btn-primary" th:href="@{/enterprises/create}">Nuevo</a>
+            <a class="btn btn-info" th:href="@{/enterprises/create}">Nuevo</a>
             <thead>
             <tr>
                 <th>Nombre</th>
@@ -32,7 +32,7 @@
             </thead>
 
             <!-- filas de la tabla-->
-            <tbody>
+            <tbody class="table-group-divider">
             <!-- Dibuja la filas por empleados -->
             <tr th:each="enterprises : ${enterprises}">
                 <!-- Dibuja columnas por cada campo del Objeto-->
@@ -46,7 +46,7 @@
                     <!-- celda para mostrar boton Actualizar por aparte -->
                     <form th:object="${enterprises}" th:action="@{/enterprises/update/{id}(id = ${enterprises.id})}" method="get" >
                         <input type="hidden" name="id" th:value="${enterprises.id}"/>
-                        <button type="submit" class="btn btn-info">Actualizar<i class="fa fa-trash"></i>
+                        <button type="button" class="btn btn-primary btn-sm">Actualizar<i class="fa fa-trash"></i>
                         </button>
                     </form>
 
@@ -57,7 +57,7 @@
                     <!-- Formulario para eliminar datos-->
                     <form th:object="${enterprises}" th:action="@{/enterprises/delete}" method="post" >
                         <input type="hidden" name="id" th:value="${enterprises.id}"/>
-                        <button type="submit" class="btn btn-danger">Eliminar <i class="fa fa-trash"></i>
+                        <button type="button" class="btn btn-secondary btn-sm">Eliminar <i class="fa fa-trash"></i>
                         </button>
                     </form>
                 </td>
