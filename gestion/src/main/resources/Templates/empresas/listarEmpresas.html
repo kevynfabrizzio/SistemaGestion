@@ -3,36 +3,30 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="index">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <title>Listar empresas</title>
-</head>
-
 <body>
 <main layout:fragment="contenido">
-
     <div>
-        <table class="table table-bordered" style="border:3px solid black; border-radius:2px;">
-
+        <table class="table">
             <!-- Columnas de la Tabla -->
-            <a class="btn btn-primary" th:href="@{/enterprises/create}">Nuevo</a>
-            <thead>
+            <div align="right">
+            <a class="btn btn-info" th:href="@{/enterprises/create}">Nuevo</a>
+            </div>
+            <p></p>
+            <thead class="table-dark">
             <tr>
                 <th>Nombre</th>
                 <th>Documento</th>
                 <th>Teléfono</th>
                 <th>Dirección</th>
                 <th>Fecha Incio</th>
+                <th>Fecha Actulización</th>
+                <th></th>
+                <th></th>
             </tr>
             </thead>
 
             <!-- filas de la tabla-->
-            <tbody>
+            <tbody class="table-group-divider">
             <!-- Dibuja la filas por empleados -->
             <tr th:each="enterprises : ${enterprises}">
                 <!-- Dibuja columnas por cada campo del Objeto-->
@@ -41,19 +35,20 @@
                 <td th:text="${enterprises.phone}"></td>
                 <td th:text="${enterprises.address}"></td>
                 <td th:text="${enterprises.createdAt}"></td>
+                <td th:text="${enterprises.updatedAt}"></td>
                 <td>
                     <!-- celda para mostrar boton Actualizar por aparte -->
-                    <form th:object="${enterprises}" th:action="@{/enterprises/update/{id}(id = ${enterprises.id})}"
+                    <form th:object="${enterprise}" th:action="@{/enterprises/update/{id} (id = ${enterprises.id})}"
                           method="get">
                         <input type="hidden" name="id" th:value="${enterprises.id}"/>
-                        <button type="submit" class="btn btn-warning">Actualizar<i class="fa fa-trash"></i>
+                        <button type="submit" class="btn btn-primary btn-sm">Actualizar<i class="fa fa-trash"></i>
                         </button>
                     </form>
                 <td>
                     <!-- Formulario para eliminar datos-->
-                    <form th:object="${enterprises}" th:action="@{/enterprises/delete}" method="post">
+                    <form th:object="${enterprise}" th:action="@{/enterprises/delete}" method="post">
                         <input type="hidden" name="id" th:value="${enterprises.id}"/>
-                        <button type="submit" class="btn btn-danger">Eliminar <i class="fa fa-trash"></i>
+                        <button type="submit" class="btn btn-secondary btn-sm">Eliminar <i class="fa fa-trash"></i>
                         </button>
                     </form>
                 </td>
@@ -61,11 +56,6 @@
             </tbody>
         </table>
     </div>
-
 </main>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
-        crossorigin="anonymous"></script>
 </body>
-
 </html>

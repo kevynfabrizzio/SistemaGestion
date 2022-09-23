@@ -26,19 +26,17 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-4" >
+            <div class="col-lg-2" >
                 <!-- Menu lateral -->
                 <nav th:replace="layouts/sidebar:: sidebar"></nav>
             </div>
 
-            <div class="col-lg-4" >
+            <div class="col-lg-9" >
                 <!-- la parte principal o contenido del aplicativo o interna-->
-                <main layout:fragment="contenido" role="main" class="container"></main>
+                <main layout:fragment="contenido" role="main" class="container-fluid"></main>
             </div>
         </div>
     </div>
-
-
 
     <!-- Pie de PAgina-->
     <!--<footer th:replace="Layouts/pie :: pie"></footer>-->
