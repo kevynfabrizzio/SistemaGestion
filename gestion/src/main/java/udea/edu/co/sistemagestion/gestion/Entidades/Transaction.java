@@ -1,5 +1,8 @@
 package udea.edu.co.sistemagestion.gestion.Entidades;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import java.util.Date;
 import javax.persistence.*;
 
@@ -19,8 +22,14 @@ public class Transaction {
     private Employee user;
     @ManyToOne(fetch = FetchType.LAZY)
     private Enterprise enterprise;
+
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "createdAt")
     private Date createdAt;
+
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "updateAt")
     private Date updateAt;
 

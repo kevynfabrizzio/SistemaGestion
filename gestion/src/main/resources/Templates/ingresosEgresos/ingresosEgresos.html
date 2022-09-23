@@ -16,6 +16,8 @@
                 <th>Amount</th>
                 <th>User</th>
                 <th>Enterprise</th>
+                <th>fecha creacion</th>
+                <th>fecha actualizacion</th>
             </tr>
             </thead>
 
@@ -28,12 +30,15 @@
                 <td th:text="${transaction.amount}"></td>
                 <td th:text="${transaction.user}"></td>
                 <td th:text="${transaction.enterprise}"></td>
+                <td th:text="${transaction.createdAt}"></td>
+                <td th:text="${transaction.updateAt}"></td>
 
 
 
                 <td>
                     <!-- celda para mostrar boton Actualizar por aparte -->
-                    <form  method="post" th:object="${transaction}">
+                    <form  th:object="${transaction}" th:action="@{/enterprises/movements/update/{id}(id = ${transaction.id})}"
+                           method="get">
                         <input type="hidden" name="id" th:value="${transaction.id}"/>
                         <button type="button" class="btn btn-primary btn-sm">Actualizar<i class="fa fa-trash"></i>
                         </button>
