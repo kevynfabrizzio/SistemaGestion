@@ -9,7 +9,7 @@
 
   <div class="table-responsive">
 
-    <table class="table table-bordered" style="border:3px; border-radius:22px;">
+    <table class="table table-bordered">
       <!-- Columnas de la Tabla -->
       <thead>
       <tr>
@@ -29,19 +29,43 @@
 
       <!-- filas de la tabla-->
       <tbody>
-        <!-- Dibuja la filas por empleados -->
-        <tr th:each="employee : ${employees}">
-          <!-- Dibuja columnas por cada campo del Objeto-->
-           <td th:text="${employee.name}"></td>
-           <td th:text="${employee.email}"></td>
-           <td th:text="${employee.profile.phone}"></td>
-        </tr>
+      <!-- Dibuja la filas por empleados -->
+      <tr th:each="employee : ${employees}">
+        <!-- Dibuja columnas por cada campo del Objeto-->
+        <td th:text="${employee.name}"></td>
+        <td th:text="${employee.email}"></td>
+        <td th:text="${employee.profile.phone}"></td>
+        <td>
+          <form  th:object="${employee}"  th:action="@{/users/updatex}" method="post">
+            <input type="hidden" name="id" th:value="${employee.id}" />
+            <input type="hidden" name="idEnter" th:value="${employee.enterprise.id}" />
+            <!--<input type="hidden" name="name" th:value="${employee.name}" />
+            <input type="hidden" name="email" th:value="${employee.email}" />
+            <input type="hidden" name="phone" th:value="${employee.profile.phone}" />
+            <input type="hidden" name="profile"  th:object="${employee.profile}" />-->
 
+            <button type="submit" class="btn btn-info">Actualizar <i class="fa fa-trash"></i>
+            </button>
+          </form>
+
+        </td>
+
+        <!-- celda para mostrar boton eliminar por aparte -->
+        <td>
+          <!-- Formulario para eliminar datos-->
+          <form th:action="@{/Employee/delete}" method="post" th:object="${employee}">
+            <input type="hidden" name="id" th:value="${employee.id}" />
+            <button type="submit" class="btn btn-danger">Eliminar <i class="fa fa-trash"></i>
+            </button>
+
+          </form>
+        </td>
+      </tr>
       </tbody>
 
 
 
-     </table>
+    </table>
 
   </div>
 

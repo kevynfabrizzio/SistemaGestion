@@ -49,14 +49,14 @@ public class EmployeeController {
     public ArrayList savex2(@RequestParam("idProf") String idProf, @RequestParam("name") String name) {
 
         // metodo savex> implemetacion basica: se accede localhost:8080/users
-        return servicesEmployee.savex2(idProf, name);// employees;// retorna arraylist
+        return new ArrayList();// servicesEmployee.savex2(idProf, name);// employees;// retorna arraylist
     }
 
     @PostMapping("/{idprof}/{name}")
     public ArrayList savex4(@PathVariable String idprof, @PathVariable String name) {
 
         // metodo savex> implemetacion basica: se accede localhost:8080/users
-        return servicesEmployee.savex2(idprof, name);// employees;// retorna arraylist
+        return new ArrayList();// servicesEmployee.savex2(idprof, name);// employees;// retorna arraylist
     }
 
     @PostMapping("/save")
@@ -83,9 +83,9 @@ public class EmployeeController {
 
     // 3. El sistema devuelve reponses 200 en la ruta /users/[id] con GET
     @GetMapping("/{id}")
-    public Employee findemployeeId(@PathVariable int id)// Este metodo pasa parametro primitivo y lo busca en la a la coleecion q se llena con los @PostMapping
+    public Employee findemployeeId(@PathVariable long id)// Este metodo pasa parametro primitivo y lo busca en la a la coleecion q se llena con los @PostMapping
     {
-        return servicesEmployee.findemployeeId(id);
+        return new Employee();// servicesEmployee.findemployeeId(id);
     }
 
     // 4. El sistema devuelve reponses 200 en la ruta /users/[id] con PATCH
@@ -103,7 +103,7 @@ public class EmployeeController {
     //Otras formas con get post patch delete
     @PostMapping("/byname_prof")
     public ArrayList savex1x(@RequestParam("name") String name, @RequestParam("idprofile") String id) {//metodo savex1> implemetacion basica: se accede localhost:8080/users
-        return servicesEmployee.savex1x(name, id);// employees;// retorna arraylist
+        return new ArrayList();// servicesEmployee.savex1x(name, id);// employees;// retorna arraylist
     }
 
     @PostMapping(value = "/guardar")
@@ -112,10 +112,62 @@ public class EmployeeController {
         return servicesEmployee.savex1(employee);
     }
 
+    @PostMapping("/updatex")
+    public String actualizarx(@ModelAttribute Employee employee,Model model){
+        //refrescarModelo(model,principal);
+        //servicesEmployee.findemployeeId(employee.getId()).
+        //employee=(Employee) model.getAttribute("employee");
+        long id=employee.getId();
+        // Employee employee=(Employee) model.getAttribute("employee");
+        employee=servicesEmployee.findemployeeId(id).get();//.getId();
+        // employee.setEnterprise(enterprise);
+        // employee.setId(lid);
+        // la busqueda de empleado puede o no traer un resultado;
+        model.addAttribute("employee",employee);
+        model.addAttribute("profile",employee.getProfile());
+        model.addAttribute("enterprise",employee.getEnterprise());
+        return "usuarios/editar";
+    }
+
+    @PostMapping("/updateuserx")
+    public String actualizar(@ModelAttribute Employee employee)
+    {
+        //Profile prof=(Profile) model.getAttribute("profile");
+        //employee.setProfile(prof);
+        //  refrescarModelo(model,principal);
+        //model.addAttribute("employee",employee);
+        long id=employee.getId();
+        // Employee employee=(Employee) model.getAttribute("employee");
+        Profile prof=employee.getProfile();
+        Employee employeex=servicesEmployee.findemployeeId(id).get();
+        employeex.setName(employee.getName());
+        employeex.setRole(employee.getRole());
+        employeex.setEmail(employee.getEmail());
+        employeex.getProfile().setPhone(prof.getPhone());
+        employeex.getEnterprise().setId(1);
+        if (employeex.getRole().equals("Admin")) {
+            employeex.setRole(Enum_RoleName.Admin);
+        } else if (employeex.getRole().equals("Operario")) {
+            employeex.setRole(Enum_RoleName.Operario);
+        }
+        // prof.setPhone(employee.getProfile().getPhone());
+        //employee.setProfile(prof);
+        //   employee.setEnterprise(employeex.getEnterprise());
+        //   employee.setCreatedAt(employeex.getCreatedAt());
+        //   employee.setUpdatedAt(employeex.getUpdatedAt());
+        //  model.addAttribute("profile",employee.getProfile());
+        //  model.addAttribute("enterprise",employee.getEnterprise());
+        this.servicesEmployee.savex2(employeex);
+        this.servicesEmployee.savex3(employeex.getProfile());
+        //this.serviciosProfile.guardar(profile);
+        return "redirect:/users/";
+
+    }
+
     @GetMapping("/userx")//@GetMapping(value="/user/{id}") //para busquedas por un solo parametro; le quite el value
     public Employee findemployeeIdx(@RequestParam int id)// Este metodo pasa parametro primitivo y lo busca en la a la coleecion q se llena con los @PostMapping
     {
-        return servicesEmployee.findemployeeId(id);
+        return new Employee();// servicesEmployee.findemployeeId(id);
     }
 
 

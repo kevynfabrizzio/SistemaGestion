@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="index">
+<body>
+
+<main layout:fragment="contenido">
+<!-- Formulario para guardar nuevo usuario -->
+<form  th:object="${employee}"  th:action="@{/users/updateuserx}" method="POST">
+    <div class="form-group"  >
+        <h2>Actualizar Usuario</h2>
+        <input type="hidden" name="id" th:value="${employee.id}" />
+      <div>
+        <label for="name">Nombre</label>
+          <input th:field="*{name}" autocomplete="off" autofocus  id="name" name="name"
+               placeholder="Escribe el nombre del usuario" type="text"
+               class="form-control">
+      </div>
+      <div>
+        <label for="email">Correo</label>
+        <input th:field="*{email}" autocomplete="off" autofocus  id="email" name="email"
+               placeholder="Escribe el email" type="text" class="form-control">
+      </div>
+
+        <div>
+            <label for="role">Rol</label>
+            <input th:field="*{role}" autocomplete="off" autofocus  id="role" name="role"
+                   placeholder="Escribe el rol" type="text" class="form-control" list="dlrole">
+        </div>
+      <!-- El campo Telefono-->
+        <div>
+            <label for="phone">Teléfono</label>
+            <input type="hidden" id="idProfile" name="idProfile" th:value="${employee.profile.id}" />
+            <input type="hidden" id="idEnterprise" name="idEnterprise" th:value="${employee.enterprise.id}" />
+            <input th:field="*{profile.phone}" autocomplete="off" autofocus  id="phone" name="phone"
+                   placeholder="Escribe el Telefono" type="text" class="form-control" >
+        </div>
+    </div>
+    <button class="btn btn-success" type="submit">Actualizar</button>
+</form>
+    <datalist id="dlrole"><option value="Administrador"></option><option value="Operativo"></option></datalist>
+</main>
+</body>
+
+</html>
