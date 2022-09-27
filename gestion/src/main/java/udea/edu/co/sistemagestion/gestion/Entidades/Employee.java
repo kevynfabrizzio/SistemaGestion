@@ -23,7 +23,7 @@ public class Employee {
         @Column(name = "role",length = 30)
         @Enumerated(value = EnumType.STRING)
         private Enum_RoleName role;
-        @ManyToOne(fetch = FetchType.LAZY)
+        @ManyToOne
         @JoinColumn
         private Enterprise enterprise;
         //   @OneToMany(mappedBy="user", fetch = FetchType.LAZY)

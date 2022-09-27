@@ -9,7 +9,15 @@
         <table class="table">
             <!-- Columnas de la Tabla -->
             <div align="right">
-            <a class="btn btn-info" th:href="@{/enterprises/create}">Nuevo</a>
+
+                <!-- Formulario para Nueva empresa datos-->
+                <form th:object="${enterprise}" th:action="@{/enterprises/list}" method="post">
+                    <input type="hidden" name="id"/>
+                    <button type="submit" class="btn btn-secondary btn-sm">Nueva Empresa <i class="fa fa-trash"></i>
+                    </button>
+                </form>
+
+           <!-- <a class="btn btn-info" th:href="@{/enterprises}">Nuevo</a>-->
             </div>
             <p></p>
             <thead class="table-dark">
@@ -20,6 +28,7 @@
                 <th>Dirección</th>
                 <th>Fecha Incio</th>
                 <th>Fecha Actulización</th>
+                <th></th>
                 <th></th>
                 <th></th>
             </tr>
@@ -38,19 +47,29 @@
                 <td th:text="${enterprises.updatedAt}"></td>
                 <td>
                     <!-- celda para mostrar boton Actualizar por aparte -->
-                    <form th:object="${enterprise}" th:action="@{/enterprises/update/{id} (id = ${enterprises.id})}"
+                    <form th:object="${enterprise}" th:action="@{/enterprises/{id} (id = ${enterprises.id})}"
                           method="get">
                         <input type="hidden" name="id" th:value="${enterprises.id}"/>
                         <button type="submit" class="btn btn-primary btn-sm">Actualizar<i class="fa fa-trash"></i>
                         </button>
                     </form>
+                </td>
                 <td>
                     <!-- Formulario para eliminar datos-->
-                    <form th:object="${enterprise}" th:action="@{/enterprises/delete}" method="post">
+                    <form th:object="${enterprise}" th:action="@{/enterprises/{id}(id = ${enterprises.id})}" method="post">
                         <input type="hidden" name="id" th:value="${enterprises.id}"/>
                         <button type="submit" class="btn btn-secondary btn-sm">Eliminar <i class="fa fa-trash"></i>
                         </button>
                     </form>
+                </td>
+                <td>
+                <!-- Formulario para Movimiento emresa -->
+                <form th:object="${enterprise}" th:action="@{/enterprises/{id}/movements/list (id = ${enterprises.id})}"
+                      method="get">
+                    <input type="hidden" name="id" th:value="${enterprises.id}"/>
+                    <button type="submit" class="btn btn-primary btn-sm">Movimiento Empresa<i class="fa fa-trash"></i>
+                    </button>
+                </form>
                 </td>
             </tr>
             </tbody>

@@ -9,15 +9,16 @@
         <table class="table">
 
             <!-- Columnas de la Tabla -->
-            <a class="btn btn-info" >Nuevo</a>
+            <div align="right">
+                <a class="btn btn-info" th:href="@{/enterprises/{id}/movements (id = ${enterprise.id})}">Nuevo Movimiento</a>
+            </div>
             <thead>
             <tr>
-                <th>Concept</th>
-                <th>Amount</th>
-                <th>User</th>
-                <th>Enterprise</th>
-                <th>fecha creacion</th>
-                <th>fecha actualizacion</th>
+                <th>Concepto</th>
+                <th>Monto</th>
+                <th>Fecha creación</th>
+                <th>Fecha actualización</th>
+                <th>Empleado</th>
             </tr>
             </thead>
 
@@ -28,36 +29,12 @@
                 <!-- Dibuja columnas por cada campo del Objeto-->
                 <td th:text="${transaction.concept}"></td>
                 <td th:text="${transaction.amount}"></td>
-                <td th:text="${transaction.user}"></td>
-                <td th:text="${transaction.enterprise}"></td>
                 <td th:text="${transaction.createdAt}"></td>
                 <td th:text="${transaction.updateAt}"></td>
-
-
-
-                <td>
-                    <!-- celda para mostrar boton Actualizar por aparte -->
-                    <form  th:object="${transaction}" th:action="@{/enterprises/movements/update/{id}(id = ${transaction.id})}"
-                           method="get">
-                        <input type="hidden" name="id" th:value="${transaction.id}"/>
-                        <button type="button" class="btn btn-primary btn-sm">Actualizar<i class="fa fa-trash"></i>
-                        </button>
-                    </form>
-                </td>
-                <!-- celda para mostrar boton eliminar por aparte -->
-                <td>
-                <td>
-                    <!-- Formulario para eliminar datos-->
-                    <form th:object="${transaction}" th:action="@{delete}" method="post" >
-                        <input type="hidden" name="id" th:value="${transaction.id}"/>
-                        <button type="button" class="btn btn-secondary btn-sm">Eliminar <i class="fa fa-trash"></i>
-                        </button>
-                    </form>
-                </td>
-            </tr>
+                <td th:text="${transaction.user.name}"></td>
 
             <tr>
-                <td >suma</td>
+                <td>suma</td>
             </tr>
             </tbody>
         </table>

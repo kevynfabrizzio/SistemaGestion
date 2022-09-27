@@ -3,6 +3,9 @@ package udea.edu.co.sistemagestion.gestion.Entidades;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -24,9 +27,11 @@ public class Enterprise {
     private String phone;
     @Column(name = "address")
     private String address;
-    @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "enterprise", fetch = FetchType.LAZY)
     private List<Employee> users;
-    @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY)
+    @Cascade({CascadeType.ALL})
+    @JoinColumn(name = "enterprise_id")
     private List<Transaction> transactions;
     @Column(name = "createdAt")
     @CreationTimestamp

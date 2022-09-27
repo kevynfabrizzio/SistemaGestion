@@ -1,7 +1,10 @@
 package udea.edu.co.sistemagestion.gestion.Entidades;
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.lang.NonNull;
 
 import java.util.Date;
 import javax.persistence.*;
@@ -19,8 +22,10 @@ public class Transaction {
     @Column(name = "amount")
     private float amount;
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_id")
     private Employee user;
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="enterprise_id")
     private Enterprise enterprise;
 
     @CreationTimestamp

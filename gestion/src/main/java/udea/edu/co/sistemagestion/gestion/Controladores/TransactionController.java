@@ -1,109 +1,77 @@
 package udea.edu.co.sistemagestion.gestion.Controladores;
 
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import udea.edu.co.sistemagestion.gestion.Entidades.Employee;
 import udea.edu.co.sistemagestion.gestion.Entidades.Enterprise;
 import udea.edu.co.sistemagestion.gestion.Entidades.Transaction;
+import udea.edu.co.sistemagestion.gestion.Servicios.ServicesEmployee;
 import udea.edu.co.sistemagestion.gestion.Servicios.ServicesEnterprise;
 import udea.edu.co.sistemagestion.gestion.Servicios.ServicesTransaction1;
 
+import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 
 @Controller
-@RequestMapping("/enterprises/")
+@RequestMapping("/enterprises/{id}/movements")
 public class TransactionController {
-    //Enterprise e; Employee emp;Profile prof; ArrayList trans;ArrayList employees;
+
     ServicesTransaction1 servicesTransaction;
+    ServicesEnterprise servicesEnterprise;
+
 
     public TransactionController(ServicesTransaction1 servicesTransaction) {
         this.servicesTransaction = servicesTransaction;
     }
 
-    /*ServicesEnterprise servicesEnterprise;
-
-    public TransactionController(ServicesEnterprise servicesEnterprise) {
-        this.servicesEnterprise = servicesEnterprise;
-    }*/
-
-
-
-
-
-    // 1. El sistema devuelve reponses 200 en la ruta /enterprises/[id]/movements con GET
-    @GetMapping("movements")
-    public String movements(Model model) {
+    // Listar
+    @GetMapping(value = "/list")
+    public String movements(@ModelAttribute Enterprise enterprise, Model model) {
         List<Transaction> listaMovimientos = servicesTransaction.transaction();
-        model.addAttribute("transaction", listaMovimientos);
+        List<Transaction> lista1 = new ArrayList<>();
+        for (int i = 0; i < listaMovimientos.size(); i++){
+            if (listaMovimientos.get(i).getEnterprise().getId()== enterprise.getId()){
+                lista1.add(listaMovimientos.get(i));
+            }
+        }
+        model.addAttribute("transaction", lista1);
         return "/ingresosEgresos/ingresosEgresos";//Ruta de destino en la vista
     }
-    @GetMapping(value = "movements/create")
+    // Crear
+    @GetMapping
     public String createTransaction(Model model) {
         model.addAttribute("transaction", new Transaction());
-        return "/ingresosEgresos/crearingresosEgresos";
+        model.addAttribute("enterprise", new  Enterprise());
+        model.addAttribute("user", new Employee());
+        return "/ingresosEgresos/nuevoEngreso";
     }
 
-    @PostMapping(value = "movements/save")
+    // Guardar
+    @PostMapping
     public String saveT(@ModelAttribute Transaction transaction) {
         servicesTransaction.saveTransaction(transaction);
-        return "redirect:/ingresosEgresos/ingresosEgresos";
-    }
-
-
-    @GetMapping(value = "movements/update/{id}")
-    public String updateFormT(@PathVariable("id") Long id, Model model) {
-        Optional<Transaction> transaction = this.servicesTransaction.getById(id);
-        model.addAttribute("transaction", transaction.get());
-        return "ingresosEgresos/actualizarIngresosEgresos";
+        return "redirect:/enterprises/{id}/movements/list";
     }
 
     // Actualizar Datos Empresa
-    @PostMapping(value = "movements/upgrade/{id}")
+    @PatchMapping
     public String updateTransaction(@ModelAttribute Transaction transaction) {
         servicesTransaction.saveTransaction(transaction);
-        return "redirect:/enterprises/movements";
+        return "redirect:/enterprises/{id}/movements/list";
     }
 
-    // 4. El sistema devuelve reponses 200 en la ruta /enterprises/[id] con GET
-    /*@DeleteMapping("{id}/movements/")//delete con un parametro;
-    public String deltransaction(@PathVariable Long id)
-    {
-        return "Delete Ok";
-    }     ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++   */
-
-    @PostMapping(value = "movements/deleteT")
+    // Eliminar
+    @DeleteMapping
     public String deleteTrans(@ModelAttribute Transaction transaction) {
         servicesTransaction.delete(transaction.getId());
-        return "redirect:/ingresosEgresos/ingresosEgresos";
-    }
-/*@RequestMapping("/enterprises/{id}/movements")
-public class TransactionController {
-
-        
-    @GetMapping
-    public ResponseEntity<Transaction> findById(@RequestBody Transaction movimiento) {
-        return new ResponseEntity<Transaction>(movimiento, HttpStatus.OK);
+        return "redirect:/enterprises/{id}/movements/list";
     }
 
-    @PostMapping()
-    public ResponseEntity<Transaction> create(@RequestBody Transaction movimiento) {
-        return new ResponseEntity<Transaction>(movimiento, HttpStatus.OK);
-
-    }
-
-    @PatchMapping
-    public ResponseEntity<Transaction> update(@RequestBody Transaction movimiento) {
-        return new ResponseEntity<Transaction>(movimiento, HttpStatus.OK);
-    }
-    
-    @DeleteMapping
-    public ResponseEntity<Transaction> delete(@RequestBody Transaction movimiento) {
-        return new ResponseEntity<Transaction>(movimiento, HttpStatus.OK);
-    }
- */
 }

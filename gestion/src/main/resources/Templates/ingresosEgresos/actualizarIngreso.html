@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="index">
+
+<body>
+<main layout:fragment="contenido">
+
+    <!-- Formulario para Actulizar un Movimiento de una Empresas -->
+    <div class="card bg-light">
+        <div class="card-header">
+            <h2>Actualizar Movimiento Empresa</h2>
+        </div>
+
+        <div class="card-body">
+            <form th:object="${transaction}" th:action="@{/enterprises/{id}/movements (id = ${enterprise.id})}" method="post">
+                <div class="form-group">
+
+                    <!-- Campo no visible para ID Empleado -->
+                    <div>
+                        <input type="hidden" name="id" th:value="${transaction.id}"/>
+                        <!--<label for="user.id">ID Empleado</label>-->
+                        <input type="hidden" th:field="*{user.id}" autocomplete="off" autofocus id="user.id"
+                               name="user.id"
+                               class="form-control">
+                    </div>
+
+                    <!-- Campo no visible para ID Empresa -->
+                    <div>
+                        <!--<label for="enterprise.id">ID Empresa</label>-->
+                        <input type="hidden" th:field="*{enterprise.id}" autocomplete="off" autofocus id="enterprise.id"
+                               name="enterprise.id"
+                               class="form-control">
+                    </div>
+
+                    <!-- Compo para Concepto -->
+                    <div>
+                        <label for="name">Concepto</label>
+                        <input th:field="*{concept}" autocomplete="off" autofocus id="concept" name="concept"
+                               placeholder="Escribe el concepto de la Empresa" type="text"
+                               class="form-control">
+                    </div>
+
+                    <!-- Compo para Monto -->
+                    <div>
+                        <label for="amount">Monto</label>
+                        <input th:field="*{amount}" autocomplete="off" autofocus id="amount"
+                               name="amount"
+                               placeholder="Escriba su monto" type="text"
+                               class="form-control">
+                    </div>
+
+                </div>
+                <button class="btn btn-success" type="submit">Ingresar</button>
+            </form>
+
+        </div>
+    </div>
+
+</main>
+</body>
+</html>

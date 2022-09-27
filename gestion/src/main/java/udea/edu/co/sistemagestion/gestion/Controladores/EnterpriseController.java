@@ -22,7 +22,7 @@ public class EnterpriseController {
     }
 
     // Listar Empresas
-    @GetMapping(value = "/list")
+    @GetMapping("/list")
     public String enterprises(Model model) {
         List<Enterprise> listaEmpresas = servicesEnterprise.enterprises();
         model.addAttribute("enterprises", listaEmpresas);
@@ -30,21 +30,21 @@ public class EnterpriseController {
     }
 
     // Crear Empresa
-    @GetMapping(value = "/create")
+    @GetMapping
     public String createEnterprises(Model model) {
         model.addAttribute("enterprise", new Enterprise());
         return "/empresas/nuevaEmpresa";
     }
 
     // Guardar Empresa
-    @PostMapping(value = "/save")
+    @PostMapping
     public String save(@ModelAttribute Enterprise enterprise) {
         servicesEnterprise.saveEnterprise(enterprise);
         return "redirect:/enterprises/list";
     }
 
     // Consultar Empresa por ID
-    @GetMapping(value = "/update/{id}")
+    @GetMapping(value = "/{id}")
     public String updateForm(@PathVariable("id") Long id, Model model) {
         Optional<Enterprise> enterprise = this.servicesEnterprise.getById(id);
         model.addAttribute("enterprise", enterprise.get());
@@ -52,14 +52,14 @@ public class EnterpriseController {
     }
 
     // Actualizar Datos Empresa
-    @PostMapping(value = "/upgrade/{id}")
+    @PatchMapping(value = "/{id}")
     public String updateEnterprise(@ModelAttribute Enterprise enterprise) {
         servicesEnterprise.saveEnterprise(enterprise);
         return "redirect:/enterprises/list";
     }
 
     // Eliminar Empresa
-    @PostMapping(value = "/delete")
+    @DeleteMapping(value = "/{id}")
     public String delete(@ModelAttribute Enterprise enterprise) {
         servicesEnterprise.delete(enterprise.getId());
         return "redirect:/enterprises/list";

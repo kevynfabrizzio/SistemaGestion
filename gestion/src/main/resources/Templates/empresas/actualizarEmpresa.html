@@ -12,10 +12,11 @@
             <h2>Actualizar Empresa</h2>
         </div>
         <div class="card-body">
-            <form th:object="${enterprise}" th:action="@{/enterprises/upgrade/{id}(id = ${enterprise.id})}"
+            <form th:object="${enterprise}" th:action="@{/enterprises/{id}(id = ${enterprise.id})}"
                   method="post">
                 <div class="form-group">
 
+                    <!-- Campo para nombre Empresa -->
                     <div>
                         <label for="name">Nombre</label>
                         <input type="hidden" name="id" th:value="${enterprise.id}"/>
@@ -24,35 +25,43 @@
                                class="form-control">
                     </div>
 
+                    <!-- Campo para Documento Empresa -->
                     <div>
                         <label for="document">Documento</label>
                         <input th:field="*{document}" autocomplete="off" autofocus id="document"
                                name="document"
-                               placeholder="Escriba su número de Documento" type="text"
+                               placeholder="Escribe su número de Nit." type="text"
                                class="form-control">
                     </div>
 
+                    <!-- Campo para Telefono de la Empresa -->
                     <div>
                         <label for="phone">Telefono</label>
                         <input th:field="*{phone}" autocomplete="off" autofocus id="phone" name="phone"
-                               placeholder="Escribe el Telefono" type="text"
+                               placeholder="Escribe el Número de Telefono" type="text"
                                class="form-control">
                     </div>
 
+                    <!-- Campo para Direccion de la empres Empresa -->
                     <div>
                         <label for="address">Dirección</label>
                         <input th:field="*{address}" autocomplete="off" autofocus id="address"
                                name="address"
-                               placeholder="Escribe el email" type="text"
+                               placeholder="Escribe la Dirección" type="text"
                                class="form-control">
                     </div>
 
-                    <div>
-                        <label for="updatedAt">Fecha Inicio</label>
-                        <input type="datetime-local" th:field="*{createdAt}" autocomplete="off" autofocus
-                               id="createdAt" name="updatedAt"
-                               class="form-control" disabled>
-                    </div>
+                    <!-- <div>
+                         <input type="hidden" th:field="*{createdAt}" autocomplete="off" autofocus
+                                id="createdAt" name="createdAt"
+                                class="form-control" disabled>
+                     </div>
+
+                     <div>
+                         <input type="hidden" th:field="*{updatedAt}" autocomplete="off" autofocus
+                                id="updatedAt" name="updatedAt"
+                                class="form-control" disabled>
+                     </div>-->
 
                 </div>
                 <button class="btn btn-success" type="submit">Ingresar</button>

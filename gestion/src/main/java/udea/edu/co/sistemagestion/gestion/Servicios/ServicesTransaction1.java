@@ -2,11 +2,14 @@ package udea.edu.co.sistemagestion.gestion.Servicios;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import udea.edu.co.sistemagestion.gestion.Entidades.Employee;
 import udea.edu.co.sistemagestion.gestion.Entidades.Enterprise;
 import udea.edu.co.sistemagestion.gestion.Repositorio.RepositoryEnterprise;
 import udea.edu.co.sistemagestion.gestion.Entidades.Transaction;
 import udea.edu.co.sistemagestion.gestion.Repositorio.RepositoryTransaction;
 
+import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,18 +41,21 @@ public class ServicesTransaction1 {
         return repositoryTransaction.save(transaction);
     }
 
-    //PATCH
-    public Transaction updateTransaction(long id, Transaction transaction) {
-        Transaction auxTransaction = new Transaction();// repositoryEnterprise.findById(id).orElse(null);
-        auxTransaction.setId(transaction.getId());
-        auxTransaction.setConcept(transaction.getConcept());
-        auxTransaction.setAmount(transaction.getAmount());
-        auxTransaction.setUser(transaction.getUser());
-        auxTransaction.setEnterprise(transaction.getEnterprise());
-        auxTransaction.setCreatedAt(transaction.getCreatedAt());
-        auxTransaction.setUpdateAt(transaction.getUpdateAt());
-        repositoryTransaction.save(auxTransaction);
-        return new Transaction();
+    public Transaction savex (String concept, Float amount){
+        Transaction trans = new Transaction();
+        trans.getId();
+        trans.getConcept();
+        trans.getAmount();
+        Employee emp = new Employee();
+        emp.setId(1);
+        trans.setUser(emp);
+        Enterprise ent = new Enterprise();
+        ent.setId(1);
+        trans.setEnterprise(ent);
+        trans.getCreatedAt();
+        trans.getUpdateAt();
+        repositoryTransaction.save(trans);
+        return trans;
     }
 
     //DELETE

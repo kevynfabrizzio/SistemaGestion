@@ -3,10 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="index">
 
-<body>
-<script src="scripts/main.js">
-var now = moment().format("DD/MM/YYYY HH:mm:ss A");
-</script>
+
 <main layout:fragment="contenido">
 
     <!-- Formulario para guardar nueva Empresa -->
@@ -15,21 +12,27 @@ var now = moment().format("DD/MM/YYYY HH:mm:ss A");
             <h2>Nueva Empresa</h2>
         </div>
         <div class="card-body">
-            <form th:object="${enterprise}" th:action="@{/enterprises/save}" method="post">
+            <form th:object="${enterprise}" th:action="@{/enterprises}" method="post">
                 <div class="form-group">
+
+                    <!-- Campo para nombre Empresa -->
                     <div>
                         <label for="name">Nombre</label>
+                        <!--<input type="hidden" name="id" th:value="${enterprise.id}"/>-->
                         <input th:field="*{name}" autocomplete="off" autofocus id="name" name="name"
-                               placeholder="Escribe el nombre de la Empresa" type="text"
-                               class="form-control">
-                    </div>
-                    <div>
-                        <label for="document">Documento</label>
-                        <input th:field="*{document}" autocomplete="off" autofocus id="document" name="document"
-                               placeholder="Escriba su número de Documento" type="text"
+                               placeholder="Escribe el Nombre de la Empresa" type="text"
                                class="form-control">
                     </div>
 
+                    <!-- Campo para Documento Empresa -->
+                    <div>
+                        <label for="document">Documento</label>
+                        <input th:field="*{document}" autocomplete="off" autofocus id="document" name="document"
+                               placeholder="Escribe su Nit." type="text"
+                               class="form-control">
+                    </div>
+
+                    <!-- Campo para Telefono de la Empresa -->
                     <div>
                         <label for="phone">Telefono</label>
                         <input th:field="*{phone}" autocomplete="off" autofocus id="phone" name="phone"
@@ -37,10 +40,11 @@ var now = moment().format("DD/MM/YYYY HH:mm:ss A");
                                class="form-control">
                     </div>
 
+                    <!-- Campo para Direccion de la empres Empresa -->
                     <div>
                         <label for="address">Dirección</label>
                         <input th:field="*{address}" autocomplete="off" autofocus id="address" name="address"
-                               placeholder="Escribe el email" type="text"
+                               placeholder="Escribe la Dirección" type="text"
                                class="form-control">
                     </div>
 
