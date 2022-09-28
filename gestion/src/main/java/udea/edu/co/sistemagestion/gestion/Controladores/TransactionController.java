@@ -26,11 +26,9 @@ public class TransactionController {
     ServicesTransaction1 servicesTransaction;
     ServicesEnterprise servicesEnterprise;
 
-
     public TransactionController(ServicesTransaction1 servicesTransaction) {
         this.servicesTransaction = servicesTransaction;
     }
-
     // Listar
     @GetMapping(value = "/list")
     public String movements(@ModelAttribute Enterprise enterprise, Model model) {
@@ -56,6 +54,7 @@ public class TransactionController {
     // Guardar
     @PostMapping
     public String saveT(@ModelAttribute Transaction transaction) {
+        //servicesEnterprise.saveEnterprise(enterprise);
         servicesTransaction.saveTransaction(transaction);
         return "redirect:/enterprises/{id}/movements/list";
     }

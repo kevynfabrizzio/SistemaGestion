@@ -53,6 +53,7 @@ public class EnterpriseController {
 
     // Actualizar Datos Empresa
     @PatchMapping(value = "/{id}")
+    @RequestMapping(value = "{id}", method = {RequestMethod.POST})
     public String updateEnterprise(@ModelAttribute Enterprise enterprise) {
         servicesEnterprise.saveEnterprise(enterprise);
         return "redirect:/enterprises/list";
@@ -61,8 +62,8 @@ public class EnterpriseController {
     // Eliminar Empresa
     @DeleteMapping(value = "/{id}")
     public String delete(@ModelAttribute Enterprise enterprise) {
-        servicesEnterprise.delete(enterprise.getId());
-        return "redirect:/enterprises/list";
+        servicesEnterprise.delete(enterprise);
+    return "redirect:/enterprises/list";
     }
 
 }

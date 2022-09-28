@@ -11,7 +11,7 @@
             <div align="right">
 
                 <!-- Formulario para Nueva empresa datos-->
-                <form th:object="${enterprise}" th:action="@{/enterprises/list}" method="post">
+                <form th:object="${enterprise}" th:action="@{/enterprises}" method="get">
                     <input type="hidden" name="id"/>
                     <button type="submit" class="btn btn-secondary btn-sm">Nueva Empresa <i class="fa fa-trash"></i>
                     </button>
@@ -47,7 +47,7 @@
                 <td th:text="${enterprises.updatedAt}"></td>
                 <td>
                     <!-- celda para mostrar boton Actualizar por aparte -->
-                    <form th:object="${enterprise}" th:action="@{/enterprises/{id} (id = ${enterprises.id})}"
+                    <form th:object="${enterprise}" th:action="@{/enterprises/{id}(id = ${enterprises.id})}"
                           method="get">
                         <input type="hidden" name="id" th:value="${enterprises.id}"/>
                         <button type="submit" class="btn btn-primary btn-sm">Actualizar<i class="fa fa-trash"></i>

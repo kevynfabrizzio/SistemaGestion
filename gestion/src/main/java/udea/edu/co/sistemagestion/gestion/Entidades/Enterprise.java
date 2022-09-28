@@ -27,10 +27,9 @@ public class Enterprise {
     private String phone;
     @Column(name = "address")
     private String address;
-    @OneToMany(mappedBy = "enterprise", fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY)
     private List<Employee> users;
     @OneToMany(fetch = FetchType.LAZY)
-    @Cascade({CascadeType.ALL})
     @JoinColumn(name = "enterprise_id")
     private List<Transaction> transactions;
     @Column(name = "createdAt")

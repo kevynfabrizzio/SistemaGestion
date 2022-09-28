@@ -34,8 +34,9 @@ public class ServicesEnterprise {
     }
 
     //DELETE
-    public void delete(Long id) {
-        repositoryEnterprise.deleteById(id);
+    public void delete(Enterprise enterprise) {
+
+        repositoryEnterprise.delete(enterprise);
         System.out.println("OK");
     }
 

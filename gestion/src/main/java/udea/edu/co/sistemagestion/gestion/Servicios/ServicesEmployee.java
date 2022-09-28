@@ -176,6 +176,10 @@ public class ServicesEmployee {
         }
         return employees;
     }
+
+    public Optional<Employee> getById(long id) {
+        return repositoryEmployee.findById(id);
+    }
    /* public Optional<Employee> EmployeesId(Long id){
         return repositoryEmployee.findById(id);
     }

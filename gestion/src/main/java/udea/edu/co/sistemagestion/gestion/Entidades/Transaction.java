@@ -21,7 +21,7 @@ public class Transaction {
     private String concept;
     @Column(name = "amount")
     private float amount;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne( fetch = FetchType.LAZY)
     @JoinColumn(name="user_id")
     private Employee user;
     @ManyToOne(fetch = FetchType.LAZY)
