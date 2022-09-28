@@ -4,45 +4,60 @@
       layout:decorate="index">
 <body>
 <main layout:fragment="contenido">
-    <!-- Formulario para guardar nuevo usuario -->
-    <form th:action="@{/users/guardarx}" method="post">
-        <div class="form-group">
-            <h2>Nuevo Usuario</h2>
 
-            <div>
-                <label for="name">Nombre</label>
-                <input autocomplete="off" autofocus  id="name" name="name"
-                       placeholder="Escribe el nombre del usuario" type="text"
-                       class="form-control" >
-            </div>
-            <div>
-                <label for="email">Correo</label>
-                <input autocomplete="off" autofocus  id="email" name="email"
-                       placeholder="Escribe el email" type="text"
-                       class="form-control" >
-            </div>
+    <div class="px-4 py-5 my-5 text-left">
 
-            <div>
-                <label for="role">Rol</label>
-                <input autocomplete="off" autofocus  id="role" name="role"
-                       placeholder="Escribe el rol" type="text" list="dlrole"
-                       class="form-control" >
-            </div>
-            <!-- El campo Telefono-->
-            <div>
-                <label for="phone">Telefono</label>
-                <input autocomplete="off" autofocus  id="phone" name="phone"
-                       placeholder="Escribe el Telefono" type="text"
-                       class="form-control" >
-            </div>
-
-
-
+        <!--Título Encabezado-->
+        <div class="card-header">
+            <h2><p><strong>Nuevo Usuario</strong></p></h2>
         </div>
-        <button class="btn btn-success" type="submit">Ingresar</button>
-    </form>
-    <datalist id="dlrole"><option value="Administrador"></option><option value="Operativo"></option></datalist>
+
+        <!-- Formulario para guardar nuevo usuario -->
+        <div class="px-4 py-10 my-5 text-left d-flex flex-colum align-items-left">
+            <div class="container-sm">
+
+                <form th:action="@{/users/guardarx}" method="post">
+                    <div class="form-group">
+                        <div>
+                            <!-- Campo para nombre Usuario -->
+                            <label for="name">Nombre</label>
+                            <input autocomplete="off" autofocus id="name" name="name"
+                                   placeholder="Escribe el nombre del usuario" type="text"
+                                   class="form-control">
+                        </div>
+                        <div>
+                            <!-- Campo para Email Usuario -->
+                            <label for="email">Correo</label>
+                            <input autocomplete="off" autofocus id="email" name="email"
+                                   placeholder="Escribe el email" type="text"
+                                   class="form-control">
+                        </div>
+
+                        <div>
+                            <!-- Campo para Rol Usuario -->
+                            <label for="role">Rol</label>
+                            <input autocomplete="off" autofocus id="role" name="role"
+                                   placeholder="Escribe el rol" type="text" list="dlrole"
+                                   class="form-control">
+                        </div>
+                        <!-- El campo Telefono Usuario-->
+                        <div>
+                            <label for="phone">Telefono</label>
+                            <input autocomplete="off" autofocus id="phone" name="phone"
+                                   placeholder="Escribe el Telefono" type="text"
+                                   class="form-control">
+                        </div>
+
+                    </div>
+                    <button class="btn btn-primary" type="submit">Ingresar</button>
+                </form>
+                <datalist id="dlrole">
+                    <option value="Administrador"></option>
+                    <option value="Operativo"></option>
+                </datalist>
+            </div>
+        </div>
+    </div>
 </main>
 </body>
-
 </html>

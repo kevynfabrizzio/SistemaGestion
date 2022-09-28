@@ -5,14 +5,30 @@
 <body>
 
 <main layout:fragment="contenido">
-    <div class="container-fluid">
+    <div>
+
+        <!--Título encabezado-->
+        <div class="card-header">
+            <h2><p><strong>Movimientos Empresa</strong></p></h2>
+        </div>
+
         <table class="table">
+            <div align="right">
+
+                <!-- Formulario para Nuevo Movimiento-->
+                <form th:object="${enterprise}" th:action="@{/enterprises/{id}/movements (id = ${enterprise.id})}"
+                      method="get">
+                    <input type="hidden" name="id"/>
+                    <button type="submit" class="btn btn-primary">Nuevo Movimiento <i class="fa fa-trash"></i>
+                    </button>
+                </form>
+
+            </div>
+
+            <p></p>
 
             <!-- Columnas de la Tabla -->
-            <div align="right">
-                <a class="btn btn-primary" th:href="@{/enterprises/{id}/movements (id = ${enterprise.id})}">Nuevo Movimiento</a>
-            </div>
-            <thead>
+            <thead class="table-dark">
             <tr>
                 <th>Concepto</th>
                 <th>Monto</th>

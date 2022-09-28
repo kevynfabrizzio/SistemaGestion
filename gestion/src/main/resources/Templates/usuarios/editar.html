@@ -5,40 +5,62 @@
 <body>
 
 <main layout:fragment="contenido">
-<!-- Formulario para guardar nuevo usuario -->
-<form  th:object="${employee}"  th:action="@{/users/updateuserx}" method="POST">
-    <div class="form-group"  >
-        <h2>Actualizar Usuario</h2>
-        <input type="hidden" name="id" th:value="${employee.id}" />
-      <div>
-        <label for="name">Nombre</label>
-          <input th:field="*{name}" autocomplete="off" autofocus  id="name" name="name"
-               placeholder="Escribe el nombre del usuario" type="text"
-               class="form-control">
-      </div>
-      <div>
-        <label for="email">Correo</label>
-        <input th:field="*{email}" autocomplete="off" autofocus  id="email" name="email"
-               placeholder="Escribe el email" type="text" class="form-control">
-      </div>
 
-        <div>
-            <label for="role">Rol</label>
-            <input th:field="*{role}" autocomplete="off" autofocus  id="role" name="role"
-                   placeholder="Escribe el rol" type="text" class="form-control" list="dlrole">
+    <div class="px-4 py-5 my-5 text-left">
+
+        <!-- Titulo del formulario -->
+        <div class="card-header">
+            <h2><p><strong>Actualizar Usuario</strong></p></h2>
         </div>
-      <!-- El campo Telefono-->
-        <div>
-            <label for="phone">Teléfono</label>
-            <input type="hidden" id="idProfile" name="idProfile" th:value="${employee.profile.id}" />
-            <input type="hidden" id="idEnterprise" name="idEnterprise" th:value="${employee.enterprise.id}" />
-            <input th:field="*{profile.phone}" autocomplete="off" autofocus  id="phone" name="phone"
-                   placeholder="Escribe el Telefono" type="text" class="form-control" >
+
+        <!-- Formulario para guardar nuevo usuario -->
+        <div class="px-4 py-10 my-5 text-left d-flex flex-colum align-items-left">
+            <div class="container-sm">
+                <form th:object="${employee}" th:action="@{/users/updateuserx}" method="POST">
+                    <div class="form-group">
+                        <input type="hidden" name="id" th:value="${employee.id}"/>
+
+                        <div>
+                            <!--Campo para nombre del Usuario-->
+                            <label for="name">Nombre</label>
+                            <input th:field="*{name}" autocomplete="off" autofocus id="name" name="name"
+                                   placeholder="Escribe el nombre del usuario" type="text"
+                                   class="form-control">
+                        </div>
+
+                        <div>
+                            <!--Campo para Email del Usuario-->
+                            <label for="email">Correo</label>
+                            <input th:field="*{email}" autocomplete="off" autofocus id="email" name="email"
+                                   placeholder="Escribe el email" type="text" class="form-control">
+                        </div>
+
+                        <div>
+                            <!--Campo para Rol del Usuario-->
+                            <label for="role">Rol</label>
+                            <input th:field="*{role}" autocomplete="off" autofocus id="role" name="role"
+                                   placeholder="Escribe el rol" type="text" class="form-control" list="dlrole">
+                        </div>
+
+                        <div>
+                            <!-- El campo para Telefono del Usuario-->
+                            <label for="phone">Teléfono</label>
+                            <input type="hidden" id="idProfile" name="idProfile" th:value="${employee.profile.id}"/>
+                            <input type="hidden" id="idEnterprise" name="idEnterprise"
+                                   th:value="${employee.enterprise.id}"/>
+                            <input th:field="*{profile.phone}" autocomplete="off" autofocus id="phone" name="phone"
+                                   placeholder="Escribe el Telefono" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Actualizar</button>
+                </form>
+                <datalist id="dlrole">
+                    <option value="Administrador"></option>
+                    <option value="Operativo"></option>
+                </datalist>
+            </div>
         </div>
     </div>
-    <button class="btn btn-success" type="submit">Actualizar</button>
-</form>
-    <datalist id="dlrole"><option value="Administrador"></option><option value="Operativo"></option></datalist>
 </main>
 </body>
 

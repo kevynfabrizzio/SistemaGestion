@@ -7,12 +7,12 @@
 <main layout:fragment="contenido">
     <div>
 
+        <!--Título encabezado-->
         <div class="card-header">
             <h2><p><strong>Empresas</strong></p></h2>
         </div>
 
         <table class="table">
-            <!-- Columnas de la Tabla -->
             <div align="right">
 
                 <!-- Formulario para Nueva empresa datos-->
@@ -22,9 +22,11 @@
                     </button>
                 </form>
 
-           <!-- <a class="btn btn-info" th:href="@{/enterprises}">Nuevo</a>-->
             </div>
+
             <p></p>
+
+            <!-- Columnas de la Tabla -->
             <thead class="table-dark">
             <tr>
                 <th>Nombre</th>
@@ -51,30 +53,35 @@
                 <td th:text="${enterprises.createdAt}"></td>
                 <td th:text="${enterprises.updatedAt}"></td>
                 <td>
-                    <!-- celda para mostrar boton Actualizar por aparte -->
+                    <!-- Boton Actualizar por aparte -->
                     <form th:object="${enterprise}" th:action="@{/enterprises/{id}(id = ${enterprises.id})}"
                           method="get">
                         <input type="hidden" name="id" th:value="${enterprises.id}"/>
-                        <button type="submit" class="btn btn-outline-primary btn-sm">Actualizar<i class="fa fa-trash"></i>
+                        <button type="submit" class="btn btn-outline-primary btn-sm">Actualizar<i
+                                class="fa fa-trash"></i>
                         </button>
                     </form>
                 </td>
                 <td>
                     <!-- Formulario para eliminar datos-->
-                    <form th:object="${enterprise}" th:action="@{/enterprises/{id}(id = ${enterprises.id})}" method="post">
+                    <form th:object="${enterprise}" th:action="@{/enterprises/{id}(id = ${enterprises.id})}"
+                          method="post">
                         <input type="hidden" name="id" th:value="${enterprises.id}"/>
-                        <button type="submit" class="btn btn-outline-secondary btn-sm">Eliminar <i class="fa fa-trash"></i>
+                        <button type="submit" class="btn btn-outline-secondary btn-sm">Eliminar <i
+                                class="fa fa-trash"></i>
                         </button>
                     </form>
                 </td>
                 <td>
-                <!-- Formulario para Movimiento emresa -->
-                <form th:object="${enterprise}" th:action="@{/enterprises/{id}/movements/list (id = ${enterprises.id})}"
-                      method="get">
-                    <input type="hidden" name="id" th:value="${enterprises.id}"/>
-                    <button type="submit" class="btn btn-outline-primary btn-sm">Movimiento Empresa<i class="fa fa-trash"></i>
-                    </button>
-                </form>
+                    <!-- Formulario para Movimiento emresa -->
+                    <form th:object="${enterprise}"
+                          th:action="@{/enterprises/{id}/movements/list (id = ${enterprises.id})}"
+                          method="get">
+                        <input type="hidden" name="id" th:value="${enterprises.id}"/>
+                        <button type="submit" class="btn btn-outline-primary btn-sm">Movimiento Empresa<i
+                                class="fa fa-trash"></i>
+                        </button>
+                    </form>
                 </td>
             </tr>
             </tbody>

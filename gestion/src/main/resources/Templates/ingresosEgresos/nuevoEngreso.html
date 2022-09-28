@@ -6,60 +6,66 @@
 <body>
 <main layout:fragment="contenido">
 
-    <!-- Formulario para Actulizar un Movimiento de una Empresas -->
     <div class="px-4 py-5 my-5 text-left">
+
+        <!--Título Encabezado-->
         <div class="card-header">
             <h2><p><strong>Nuevo Movimiento</strong></p></h2>
         </div>
 
-        <div  class="px-4 py-10 my-5 text-left d-flex flex-colum align-items-left">
+        <!-- Formulario para Actulizar un Movimiento de una Empresas -->
+        <div class="px-4 py-10 my-5 text-left d-flex flex-colum align-items-left">
             <div class="container-sm">
 
-            <form class= "d-flex flex-column gap-3 align-items-left" th:object="${transaction}" th:action="@{/enterprises/{id}/movements (id = ${enterprise.id})}" method="post">
-                <div class="form-group">
+                <form class="d-flex flex-column gap-3 align-items-left" th:object="${transaction}"
+                      th:action="@{/enterprises/{id}/movements (id = ${enterprise.id})}" method="post">
+                    <div class="form-group">
 
-                    <!-- Campo no visible para ID Empleado -->
+                        <!-- Campo no visible para ID Empleado -->
+                        <div>
+                            <input type="hidden" name="id" th:value="${transaction.id}"/>
+                            <!--<label for="user.id">ID Empleado</label>-->
+                            <input type="hidden" th:field="*{user.id}" autocomplete="off" autofocus id="userId"
+                                   name="userId"
+                                   class="form-control">
+                        </div>
+
+                        <!-- Campo no visible para ID Empresa -->
+                        <div>
+                            <!--<label for="enterprise.id">ID Empresa</label>-->
+                            <input type="hidden" th:field="*{enterprise.id}" autocomplete="off" autofocus
+                                   id="enterpriseId"
+                                   name="enterpriseId"
+                                   class="form-control">
+                        </div>
+
+                        <!-- Compo para Concepto -->
+                        <div>
+                            <label for="name">Concepto</label>
+                            <input th:field="*{concept}" autocomplete="off" autofocus id="concept" name="concept"
+                                   placeholder="Escribe el concepto de la Empresa" type="text"
+                                   class="form-control">
+                        </div>
+
+                        <!-- Compo para Monto -->
+                        <div>
+                            <label for="amount">Monto</label>
+                            <input th:field="*{amount}" autocomplete="off" autofocus id="amount"
+                                   name="amount"
+                                   placeholder="Escriba su monto" type="text"
+                                   class="form-control">
+                        </div>
+
+                    </div>
+                    <!--Boton gregresar-->
                     <div>
-                        <input type="hidden" name="id" th:value="${transaction.id}"/>
-                        <!--<label for="user.id">ID Empleado</label>-->
-                        <input type="hidden" th:field="*{user.id}" autocomplete="off" autofocus id="userId" name="userId"
-                               class="form-control">
+                        <button class="btn btn-primary" type="submit">Ingresar</button>
                     </div>
 
-                    <!-- Campo no visible para ID Empresa -->
-                    <div>
-                        <!--<label for="enterprise.id">ID Empresa</label>-->
-                        <input type="hidden" th:field="*{enterprise.id}" autocomplete="off" autofocus id="enterpriseId"
-                               name="enterpriseId"
-                               class="form-control">
-                    </div>
+                </form>
 
-                    <!-- Compo para Concepto -->
-                    <div>
-                        <label for="name">Concepto</label>
-                        <input th:field="*{concept}" autocomplete="off" autofocus id="concept" name="concept"
-                               placeholder="Escribe el concepto de la Empresa" type="text"
-                               class="form-control">
-                    </div>
-
-                    <!-- Compo para Monto -->
-                    <div>
-                        <label for="amount">Monto</label>
-                        <input th:field="*{amount}" autocomplete="off" autofocus id="amount"
-                               name="amount"
-                               placeholder="Escriba su monto" type="text"
-                               class="form-control">
-                    </div>
-
-                </div>
-                <div>
-                    <button class="btn btn-primary" type="submit">Ingresar</button>
-                </div>
-
-            </form>
-
+            </div>
         </div>
-    </div>
     </div>
 </main>
 </body>
