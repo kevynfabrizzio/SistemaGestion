@@ -65,7 +65,7 @@
                 <td>
                     <!-- Formulario para eliminar datos-->
                     <form th:object="${enterprise}" th:action="@{/enterprises/{id}(id = ${enterprises.id})}"
-                          method="post">
+                          th:method="delete">
                         <input type="hidden" name="id" th:value="${enterprises.id}"/>
                         <button type="submit" class="btn btn-outline-secondary btn-sm">Eliminar <i
                                 class="fa fa-trash"></i>

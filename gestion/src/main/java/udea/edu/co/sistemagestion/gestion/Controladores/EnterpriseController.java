@@ -53,7 +53,7 @@ public class EnterpriseController {
 
     // Actualizar Datos Empresa
     @PatchMapping(value = "/{id}")
-    @RequestMapping(value = "{id}", method = {RequestMethod.POST})
+    //@RequestMapping(value = "{id}", method = {RequestMethod.POST})
     public String updateEnterprise(@ModelAttribute Enterprise enterprise) {
         servicesEnterprise.saveEnterprise(enterprise);
         return "redirect:/enterprises/list";
