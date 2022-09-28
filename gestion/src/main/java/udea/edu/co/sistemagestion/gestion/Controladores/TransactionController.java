@@ -54,7 +54,6 @@ public class TransactionController {
     // Guardar
     @PostMapping
     public String saveT(@ModelAttribute Transaction transaction) {
-        //servicesEnterprise.saveEnterprise(enterprise);
         servicesTransaction.saveTransaction(transaction);
         return "redirect:/enterprises/{id}/movements/list";
     }

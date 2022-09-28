@@ -7,12 +7,13 @@
 <main layout:fragment="contenido">
 
     <!-- Formulario para guardar nueva Empresa -->
-    <div class="card bg-light">
+    <div class="px-4 py-5 my-5 text-left">
         <div class="card-header">
-            <h2>Nueva Empresa</h2>
+            <h2><p><strong>Nueva Empresa</strong></p></h2>
         </div>
-        <div class="card-body">
-            <form th:object="${enterprise}" th:action="@{/enterprises}" method="post">
+        <div class="px-4 py-10 my-5 text-left d-flex flex-colum align-items-left">
+            <div class="container-sm">
+            <form class="d-flex flex-column gap-3 align-items-left" th:object="${enterprise}" th:action="@{/enterprises}" method="post">
                 <div class="form-group">
 
                     <!-- Campo para nombre Empresa -->
@@ -49,9 +50,12 @@
                     </div>
 
                 </div>
-                <button class="btn btn-success" type="submit">Ingresar</button>
+                <div>
+                <button class="btn btn-primary" type="submit">Ingresar</button>
+                </div>
             </form>
         </div>
+    </div>
     </div>
 </main>
 </body>
