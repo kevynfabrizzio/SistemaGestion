@@ -6,9 +6,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import udea.edu.co.sistemagestion.gestion.Entidades.*;
 import udea.edu.co.sistemagestion.gestion.Servicios.ServicesEmployee;
+import udea.edu.co.sistemagestion.gestion.Servicios.ServicesEnterprise;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,221 +21,63 @@ import java.util.List;
 public class EmployeeController {
     @Autowired
     ServicesEmployee servicesEmployee;
-   /* public EmployeeController(ServicesEmployee servicesEmployee){
-        this.servicesEmployee=servicesEmployee;
-    }*/
 
-    // 1. El sistema devuelve reponses 200 en la ruta /users con GET
-   /* @GetMapping
-    public List<Employee> employees()
-    {
-        //este metodo se accede con localhost:8080/users, y retorna la coleccion
-        return servicesEmployee.employees();// employees;
-    }*/
+    @Autowired
+    ServicesEnterprise servicesEnterprise;
     @GetMapping
     public String employees(Model model)//List<Employee> employees(Model model)
     {
-        //este metodo se accede con localhost:8080/users, y retorna la coleccion
-        List<Employee> employees = servicesEmployee.employees();
-        // Estableciendo en el modelo la lista de empleados, para que el HTML La pueda visualizar
-        model.addAttribute("employees", employees);
-        //return servicesEmployee.employees();// employees;
+        List<Employee> employees=servicesEmployee.employees();
+        model.addAttribute("employees",employees);
         return "/usuarios/employees";
     }
 
-    // 2. El sistema devuelve reponses 200 en la ruta /users con POST
-    // aqui hay 2 formas con post pare este definition of done
-    // la primera guarda un objeto Employee pasando por url id_profile y name de employee asi: localhost.../users?id=1&name=pedro
-    //la segunda lo mismo pero el url es: localhost../users/1/pedro
-    //y la tercera pasa un JSON asi: localhost.../users/save; y por postman le pasas el json Emplloyee
+    @GetMapping(value = "/nuevo2")
+    public String createEmployee(Model model) {
+        model.addAttribute("employee", new Employee());
+        model.addAttribute("profile", new Profile());
+        model.addAttribute("enterprise", new Enterprise());
+        return "usuarios/newEmployee2";
+    }
     @PostMapping
-    public ArrayList savex2(@RequestParam("idProf") String idProf, @RequestParam("name") String name) {
-
-        // metodo savex> implemetacion basica: se accede localhost:8080/users
-        return new ArrayList();// servicesEmployee.savex2(idProf, name);// employees;// retorna arraylist
+    public String savex0000(@ModelAttribute Employee employee,Model model, @RequestParam("image") MultipartFile file) throws IOException, IOException {//guardar> implementacion pasando objeto;se accede localhost:8080/users/guardar y por postman le pasas el json
+        System.out.println("ljhkjhljhjl");
+        String rimg=this.servicesEmployee.savex2(employee,model,file);
+        //model.addAttribute("profile",employee.getProfile());
+        // this.servicesEmployee.savex3(employee.getProfile());
+        return "redirect:/users/"; //servicesEmployee.savex2(employee);
     }
-
-    @PostMapping("/{idprof}/{name}")
-    public ArrayList savex4(@PathVariable String idprof, @PathVariable String name) {
-
-        // metodo savex> implemetacion basica: se accede localhost:8080/users
-        return new ArrayList();// servicesEmployee.savex2(idprof, name);// employees;// retorna arraylist
-    }
-
-    @PostMapping("/save")
-    public ArrayList savex5(@RequestBody Employee employee) {
-
-        // metodo savex> implemetacion basica: se accede localhost:8080/users
-        return servicesEmployee.savex1(employee);// employees;// retorna arraylist
-    }
-
-    @GetMapping("/nuevo")
-    public String employeenew() {
-        return "usuarios/newEmployee";
-    }
-
-    @PostMapping("/guardarx")
-    public String guardarx(@RequestParam("name") String name, @RequestParam("email") String email, @RequestParam("role") String role, @RequestParam("phone") String phone) {
-        servicesEmployee.guardarx(name, email, role, phone);
-
-        // guardar objeto Employee
-        //servicesEmployee.savex1(employee);
-        //return "redirect:/Employee/listar";
-        return "redirect:/users/";// con esta linea ya retorna lo q guarda
-    }
-
-    // 3. El sistema devuelve reponses 200 en la ruta /users/[id] con GET
     @GetMapping("/{id}")
-    public Employee findemployeeId(@PathVariable long id)// Este metodo pasa parametro primitivo y lo busca en la a la coleecion q se llena con los @PostMapping
-    {
-        return new Employee();// servicesEmployee.findemployeeId(id);
-    }
-
-    // 4. El sistema devuelve reponses 200 en la ruta /users/[id] con PATCH
-    @PatchMapping("/{id}")//update con un parametro;
-    public Employee upemployeeId(@PathVariable int id) {
-        return servicesEmployee.upemployeeId(id);
-    }
-
-    // 5. El sistema devuelve reponses 200 en la ruta /users/[id] con GET
-    @DeleteMapping("/{id}")//delete con un parametro;
-    public ArrayList delemployeeId(@PathVariable int id) {
-        return servicesEmployee.delemployeeId(id);
-    }
-
-    //Otras formas con get post patch delete
-    @PostMapping("/byname_prof")
-    public ArrayList savex1x(@RequestParam("name") String name, @RequestParam("idprofile") String id) {//metodo savex1> implemetacion basica: se accede localhost:8080/users
-        return new ArrayList();// servicesEmployee.savex1x(name, id);// employees;// retorna arraylist
-    }
-
-    @PostMapping(value = "/guardar")
-    public ArrayList savex3(@RequestBody Employee employee)//guardar> implementacion pasando objeto;se accede localhost:8080/users/guardar y por postman le pasas el json
-    {
-        return servicesEmployee.savex1(employee);
-    }
-
-    @PostMapping("/updatex")
-    public String actualizarx(@ModelAttribute Employee employee,Model model){
-        //refrescarModelo(model,principal);
-        //servicesEmployee.findemployeeId(employee.getId()).
-        //employee=(Employee) model.getAttribute("employee");
-        long id=employee.getId();
-        // Employee employee=(Employee) model.getAttribute("employee");
+    public String editarx(@PathVariable int id,@ModelAttribute Employee employee,Model model){
+        //long id=employee.getId();
         employee=servicesEmployee.findemployeeId(id).get();//.getId();
-        // employee.setEnterprise(enterprise);
-        // employee.setId(lid);
-        // la busqueda de empleado puede o no traer un resultado;
         model.addAttribute("employee",employee);
         model.addAttribute("profile",employee.getProfile());
         model.addAttribute("enterprise",employee.getEnterprise());
         return "usuarios/editar";
     }
 
-    @PostMapping("/updateuserx")
-    public String actualizar(@ModelAttribute Employee employee)
-    {
-        //Profile prof=(Profile) model.getAttribute("profile");
-        //employee.setProfile(prof);
-        //  refrescarModelo(model,principal);
-        //model.addAttribute("employee",employee);
-        long id=employee.getId();
-        // Employee employee=(Employee) model.getAttribute("employee");
-        Profile prof=employee.getProfile();
-        Employee employeex=servicesEmployee.findemployeeId(id).get();
-        employeex.setName(employee.getName());
-        employeex.setRole(employee.getRole());
-        employeex.setEmail(employee.getEmail());
-        employeex.getProfile().setPhone(prof.getPhone());
-        employeex.getEnterprise().setId(1);
-        if (employeex.getRole().equals("Admin")) {
-            employeex.setRole(Enum_RoleName.Admin);
-        } else if (employeex.getRole().equals("Operario")) {
-            employeex.setRole(Enum_RoleName.Operario);
+    //@PatchMapping("/{id}")
+    // public String actualizar(@PathVariable int id,@ModelAttribute Employee employee,Model model, @RequestParam("image") MultipartFile file) throws IOException {
+    @PatchMapping
+    public String actualizar(@ModelAttribute Employee employee,Model model, @RequestParam("image") MultipartFile file) throws IOException {
+        if(file.isEmpty()){
+            String rimg=this.servicesEmployee.savex23(employee,model);
+        }else{
+            String rimg=this.servicesEmployee.savex2(employee,model,file);
         }
-        // prof.setPhone(employee.getProfile().getPhone());
-        //employee.setProfile(prof);
-        //   employee.setEnterprise(employeex.getEnterprise());
-        //   employee.setCreatedAt(employeex.getCreatedAt());
-        //   employee.setUpdatedAt(employeex.getUpdatedAt());
-        //  model.addAttribute("profile",employee.getProfile());
-        //  model.addAttribute("enterprise",employee.getEnterprise());
-        this.servicesEmployee.savex2(employeex);
-        this.servicesEmployee.savex3(employeex.getProfile());
+        if(employee.getProfile().getImage().equals("")){}else{this.servicesEmployee.savex3(employee.getProfile());}
         //this.serviciosProfile.guardar(profile);
         return "redirect:/users/";
-
     }
-
-    @GetMapping("/userx")//@GetMapping(value="/user/{id}") //para busquedas por un solo parametro; le quite el value
-    public Employee findemployeeIdx(@RequestParam int id)// Este metodo pasa parametro primitivo y lo busca en la a la coleecion q se llena con los @PostMapping
+    //@DeleteMapping("/{id}")//delete con un parametro;
+    //public ArrayList delemployeeId(@PathVariable int id,@ModelAttribute Employee employee,Model model)
+    @DeleteMapping
+    public String delemployeeId(@ModelAttribute Employee employee,Model model)//, @RequestParam("image") MultipartFile file)
     {
-        return new Employee();// servicesEmployee.findemployeeId(id);
+        employee=servicesEmployee.findemployeeId(employee.getId()).get();//.getId();
+        servicesEmployee.delemployeeObj(employee);
+        return "redirect:/users/";
     }
 
-
-    @PatchMapping("/user/{id}/{name}")//update con 2(multiples parametros)
-    public Employee upemployeeIdName(@PathVariable int id, @PathVariable String name) {
-        return servicesEmployee.upemployeeIdName(id, name);
-    }
-
-    @PatchMapping("/user/update")//update pasando object
-    public ArrayList upemployee(@RequestBody Employee employee) {
-        return servicesEmployee.upemployee(employee);
-    }
-/*
-    @Autowired
-    ServicesEmployee servicesEmployee;
-    public EmployeeController(ServicesEmployee servicesEmployee){
-        this.servicesEmployee=servicesEmployee;
-    }
-    ArrayList employees;
-    Profile prof;
-    @GetMapping
-    public List<Employee> employees() {//este metodo se accede con localhost:8080/users, y retorna la coleccion
-        return servicesEmployee.employees();// employees;
-    }
-
-    @PostMapping
-    public ArrayList savex() {//metodo savex> implemetacion basica: se accede localhost:8080/users
-        return servicesEmployee.savex();// employees;// retorna arraylist
-    }
-
-    @PostMapping(value="/guardar")
-    public ArrayList savex1(@RequestBody Employee employee)//guardar> implementacion pasando objeto;se accede localhost:8080/users/guardar y por postman le pasas el json
-    {
-        return servicesEmployee.savex1(employee);
-    }
-
-    @GetMapping("/user/{id}")//@GetMapping(value="/user/{id}") //para busquedas por un solo parametro; le quite el value
-    public Employee findemployeeId(@PathVariable int id)// Este metodo pasa parametro primitivo y lo busca en la a la coleecion q se llena con los @PostMapping
-    {
-        return servicesEmployee.findemployeeId(id);
-    }
-    @GetMapping("/userx") //@GetMapping(value="/user/{id}") //para busquedas por un solo parametro; le quite el value
-    public Employee findemployeeIdx(@RequestParam int id)// Este metodo pasa parametro primitivo y lo busca en la a la coleecion q se llena con los @PostMapping
-    {
-        return servicesEmployee.findemployeeIdx(id);
-    }
-    @PatchMapping("/user/{id}")//update con un parametro
-    public Employee upemployeeId(@PathVariable int id)
-    {
-        return servicesEmployee.upemployeeId(id);
-    }
-    @PatchMapping("/user/{id}/{name}")//update con 2(multiples parametros)
-    public Employee upemployeeIdName(@PathVariable int id, @PathVariable String name)
-    {
-        return  servicesEmployee.upemployeeIdName(id,name);
-    }
-    @PatchMapping("/user/update")//update con 2(multiples parametros)
-    public ArrayList upemployee(@RequestBody Employee employee)
-    {
-        return  servicesEmployee.upemployee(employee);
-    }
-
-    @DeleteMapping("/user/{id}")//delete con un parametro
-    public ArrayList delemployeeId(@PathVariable int id)
-    {
-        return servicesEmployee.delemployeeId(id);
-    }*/
 }

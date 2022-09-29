@@ -22,7 +22,7 @@ public class Transaction {
     @Column(name = "amount")
     private float amount;
     @ManyToOne( fetch = FetchType.LAZY)
-    @JoinColumn(name="user_id")
+    @JoinColumn
     private Employee user;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="enterprise_id")

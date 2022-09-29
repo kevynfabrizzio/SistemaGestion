@@ -11,14 +11,15 @@ public class Profile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private int id;
     @Column(name = "image")
     private String image;
     @Column(name = "phone", nullable = false)
     private String phone;
     //@OneToOne(mappedBy="profile")
-    @OneToOne(mappedBy = "profile")
-    private Employee user;
+
+    //@OneToOne(mappedBy = "profile")
+    //private Employee user;
 
     @Column(name = "createdAt")
     private Date createdAt;
@@ -29,20 +30,20 @@ public class Profile {
     public Profile() {
     }
 
-    public Profile(String id, String image, String phone, Employee user, Date createdAt, Date updatedAt) {
+    public Profile(int id, String image, String phone, Date createdAt, Date updatedAt) {
         this.id = id;
         this.image = image;
         this.phone = phone;
-        this.user = user;
+       // this.user = user;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -62,13 +63,6 @@ public class Profile {
         this.phone = phone;
     }
 
-    public Employee getUser() {
-        return user;
-    }
-
-    public void setUser(Employee user) {
-        this.user = user;
-    }
 
     public Date getCreatedAt() {
         return createdAt;

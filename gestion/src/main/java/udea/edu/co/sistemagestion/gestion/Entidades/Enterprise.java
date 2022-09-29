@@ -27,8 +27,8 @@ public class Enterprise {
     private String phone;
     @Column(name = "address")
     private String address;
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<Employee> users;
+    //@OneToMany(fetch = FetchType.LAZY)
+    //private List<Employee> users;
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "enterprise_id")
     private List<Transaction> transactions;
@@ -41,13 +41,13 @@ public class Enterprise {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
-    public Enterprise(long id, String name, String document, String phone, String address, List<Employee> users, List<Transaction> transactions, Date createdAt, Date updatedAt) {
+    public Enterprise(long id, String name, String document, String phone, String address, List<Transaction> transactions, Date createdAt, Date updatedAt) {
         this.id = id;
         this.name = name;
         this.document = document;
         this.phone = phone;
         this.address = address;
-        this.users = users;
+        //this.users = users;
         this.transactions = transactions;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
@@ -95,14 +95,6 @@ public class Enterprise {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public List<Employee> getUser() {
-        return users;
-    }
-
-    public void setUser(List<Employee> users) {
-        this.users = users;
     }
 
     public List<Transaction> getTransactions() {

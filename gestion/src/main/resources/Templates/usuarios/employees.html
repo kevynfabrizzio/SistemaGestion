@@ -6,74 +6,83 @@
 
 <main layout:fragment="contenido">
 
-    <div>
-        <!--Título encabezado-->
-        <div class="card-header">
-            <h2><p><strong>Usuarios</strong></p></h2>
-        </div>
 
-        <table class="table">
-            <div align="right">
+  <div class="table-responsive">
 
-                <!-- Formulario para Nueva empresa datos-->
-                <form th:object="${user}" th:action="@{/users/nuevo/}" method="get">
-                    <input type="hidden" name="id"/>
-                    <button type="submit" class="btn btn-primary">Nuevo Usuario<i class="fa fa-trash"></i>
-                    </button>
-                </form>
-            </div>
+    <table class="table table-bordered-0">
+      <div align="right">
+        <a class="btn btn-info" th:href="@{/users/nuevo2}">Nuevo</a>
+      </div>
+      <!-- Columnas de la Tabla -->
+      <thead>
+      <!--<tr>
+        <td></td>
+        <td></td>
+        <td  align="left">
+          <a class="btn btn-primary" th:href="@{/users/nuevo2}">Nuevo <i class="fa fa-edit"></i></a>
+        </td>
+      </tr>-->
 
-            <p></p>
+      <tr>
+        <th>Avatar</th>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Teléfono</th>
+      </tr>
+      </thead>
 
-            <!-- Columnas de la Tabla -->
-            <thead class="table-dark">
-            <tr>
-                <th>Nombre</th>
-                <th>Correo</th>
-                <th>Teléfono</th>
-            </tr>
-            </thead>
+      <!-- filas de la tabla-->
+      <tbody>
+        <!-- Dibuja la filas por empleados -->
+        <tr th:each="employee : ${employees}">
+          <!-- Dibuja columnas por cada campo del Objeto-->
+        <td><img th:src="@{'/img/uploads/'+${employee.profile.image}}" style="height:50px ;width:50px  "></td>
+        <td th:text="${employee.name}"></td>
+        <td th:text="${employee.email}"></td>
+        <td th:text="${employee.profile.phone}"></td>
+        <td>
+<!--          <form  th:object="${employee}"  th:action="@{/users/updatex}" method="get">-->
+          <form  th:object="${employee}"  th:action="@{/users/{id}(id=${employee.id})}" method="get">
+            <!--<input th:field="*{employee}" type="hidden" id="employee" name="employee" />-->
+            <input type="hidden" name="id" th:value="${employee.id}" />
+          <!--  <input type="hidden" name="enterprise" th:value="${employee.enterprise.id}" />
+            <input type="hidden" name="profile"  th:value="${employee.profile.id}" />-->
+            <!--<input type="hidden" name="name" th:value="${employee.name}" />
+            <input type="hidden" name="email" th:value="${employee.email}" />
+            <input type="hidden" name="phone" th:value="${employee.profile.phone}" />
+            <input type="hidden" name="profile"  th:value="${employee.profile.id}" />
+            <input type="hidden" name="createdAt"  th:value="${employee.createdAt}" /> genera error al enviar
+            <input type="hidden" name="updatedAt"  th:value="${employee.updatedAt}" /> genera error al enviar-->
+           <!-- <input type="hidden" name="profile"  th:object="${employee.profile.id}" />
+            <input th:field="*{profile}" type="hidden" id="profile" name="profile" />-->
+            <button type="submit" class="btn btn-info">Actualizar <i class="fa fa-trash"></i>
+            </button>
+          </form>
 
-            <!-- filas de la tabla-->
-            <tbody class="table-group-divider">
-            <!-- Dibuja la filas por empleados -->
-            <tr th:each="employee : ${employees}">
-                <!-- Dibuja columnas por cada campo del Objeto-->
-                <td th:text="${employee.name}"></td>
-                <td th:text="${employee.email}"></td>
-                <td th:text="${employee.profile.phone}"></td>
-                <td>
-                    <!-- Boton Actualizar por aparte -->
-                    <form th:object="${employee}" th:action="@{/users/updatex}" method="post">
-                        <input type="hidden" name="id" th:value="${employee.id}"/>
-                        <input type="hidden" name="idEnter" th:value="${employee.enterprise.id}"/>
-                        <!--<input type="hidden" name="name" th:value="${employee.name}" />
-                        <input type="hidden" name="email" th:value="${employee.email}" />
-                        <input type="hidden" name="phone" th:value="${employee.profile.phone}" />
-                        <input type="hidden" name="profile"  th:object="${employee.profile}" />-->
+        </td>
 
-                        <button type="submit" class="btn btn-outline-primary btn-sm">Actualizar <i
-                                class="fa fa-trash"></i>
-                        </button>
-                    </form>
+        <!-- celda para mostrar boton eliminar por aparte -->
+        <td>
+          <!-- Formulario para eliminar datos-->
+          <form th:action="@{/users}" th:method="delete" th:object="${employee}" enctype="multipart/form-data">
+            <input type="hidden" name="id" th:value="${employee.id}" />
+            <button type="submit" class="btn btn-danger">Eliminar <i class="fa fa-trash"></i>
+            </button>
 
-                </td>
+          </form>
+        </td>
+        </tr>
+      </tbody>
 
-                <!-- Boton eliminar por aparte -->
-                <td>
-                    <!-- Formulario para eliminar datos-->
-                    <form th:action="@{/Employee/delete}" method="post" th:object="${employee}">
-                        <input type="hidden" name="id" th:value="${employee.id}"/>
-                        <button type="submit" class="btn btn-outline-secondary btn-sm">Eliminar <i
-                                class="fa fa-trash"></i>
-                        </button>
 
-                    </form>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+
+     </table>
+
+  </div>
+
+
 </main>
+
 </body>
+
 </html>
