@@ -2,7 +2,8 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -12,7 +13,11 @@
     <title>Sistema de Gestion</title>
 </head>
 <body>
-
+<div sec:authorize="!isAuthenticated()">
+    <a th:href="@{/oauth2/authorization/auth0}">Log In</a>
+</div>
+<div sec:authorize="isAuthenticated()">
+    <p>You are logged in!</p>
     <!--Cuerpor de la pagina -->
     <div>
         <h1>        </h1>
@@ -37,7 +42,7 @@
             </div>
         </div>
     </div>
-
+</div>
     <!-- Pie de PAgina-->
     <!--<footer th:replace="Layouts/pie :: pie"></footer>-->
     <footer class="py-3 my-4" style="background:black">
