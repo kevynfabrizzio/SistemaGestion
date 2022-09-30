@@ -43,10 +43,13 @@
         <td>
 <!--          <form  th:object="${employee}"  th:action="@{/users/updatex}" method="get">-->
           <form  th:object="${employee}"  th:action="@{/users/{id}(id=${employee.id})}" method="get">
-            <!--<input th:field="*{employee}" type="hidden" id="employee" name="employee" />-->
+            <!--<input th:field="${employee}" type="hidden" id="employee" name="employee" />-->
             <input type="hidden" name="id" th:value="${employee.id}" />
-          <!--  <input type="hidden" name="enterprise" th:value="${employee.enterprise.id}" />
-            <input type="hidden" name="profile"  th:value="${employee.profile.id}" />-->
+            <input type="hidden" name="enterprise" th:value="${employee.enterprise.id}" />
+            <input type="hidden" name="profile"  th:value="${employee.profile.id}" />
+
+            <!--<input type="hidden" name="enterprise" th:object="${employee.enterprise.id}" />-->
+            <!--<input type="hidden" name="profile"  th:object="${employee.profile.id}" />-->
             <!--<input type="hidden" name="name" th:value="${employee.name}" />
             <input type="hidden" name="email" th:value="${employee.email}" />
             <input type="hidden" name="phone" th:value="${employee.profile.phone}" />

@@ -11,7 +11,7 @@ public class Profile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
     @Column(name = "image")
     private String image;
     @Column(name = "phone", nullable = false)
@@ -39,7 +39,7 @@ public class Profile {
         this.updatedAt = updatedAt;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

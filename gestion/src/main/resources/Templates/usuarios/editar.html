@@ -14,28 +14,28 @@
         <input type="hidden" name="id" th:value="${employee.id}" />
       <div>
         <label for="name">Nombre</label>
-          <input th:field="*{name}" autocomplete="off" autofocus  id="name" name="name"
+          <input th:field="*{name}" th:value="${employee.name}" autocomplete="off" autofocus  id="name" name="name"
                placeholder="Escribe el nombre del usuario" type="text"
                class="form-control">
       </div>
       <div>
         <label for="email">Correo</label>
-        <input th:field="*{email}" autocomplete="off" autofocus  id="email" name="email"
+        <input th:field="*{email}" th:value="${employee.email}" autocomplete="off" autofocus  id="email" name="email"
                placeholder="Escribe el email" type="text" class="form-control">
       </div>
 
         <div>
             <label for="role">Rol</label>
-            <input th:field="*{role}" autocomplete="off" autofocus  id="role" name="role"
+            <input th:field="*{role}" th:value="${employee.role}" autocomplete="off" autofocus  id="role" name="role"
                    placeholder="Escribe el rol" type="text" class="form-control" list="dlrole">
         </div>
       <!-- El campo Telefono-->
         <div>
             <label for="phone">Teléfono</label>
-            <input th:field="*{profile.phone}" autocomplete="off" autofocus  id="phone" name="phone"
+            <input th:field="*{profile.phone}" th:value="${profile.phone}" autocomplete="off" autofocus  id="phone" name="phone"
                    placeholder="Escribe el Telefono" type="text" class="form-control">
-         <!--   <input th:field="*{enterprise}" type="hidden" id="idEnter" name="idEnter" />
-            <input th:field="*{profile}" type="hidden" id="idProf" name="idProf" />-->
+           <input th:field="*{enterprise}" type="hidden" id="enterprise" name="enterprise" />
+            <input th:field="*{profile}" type="hidden" id="profile" name="profile" />
             <!-- <input th:field="*{enterprise}" type="text" id="idEnter" name="idEnter" hidden />
            <input th:field="*{profile}" type="text" id="idProf" name="idProf" hidden />
             <input type="hidden" name="name" th:value="${employee.name}" />
@@ -48,7 +48,7 @@
             <label for="image">Imagen</label>
             <input id="image" name="image"
                    placeholder="seleccione su imagen" type="file"
-                   class="form-control" >
+                   class="form-control"  th:value="${profile.image}">
         </div>
     </div>
     <button class="btn btn-success" type="submit">Actualizar</button>
